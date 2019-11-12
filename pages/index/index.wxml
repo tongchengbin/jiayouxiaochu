@@ -1,0 +1,19 @@
+<!--index.wxml-->
+<view class="container">
+<!-- 搜索 -->
+  <view class="search"></view>
+  <!-- 主体数据 -->
+  <view class="box">
+    <view class="item" wx:for="{{listdata}}" wx:key="item"  data-mid="{{item.id}}">
+      <navigator url="/pages/menuDetail/menuDetail?mid={{item.id}}">
+      <image src="{{item.display_img}}?x-oss-process=style/size" mode="aspectFill"></image>
+          <view class="item-info">
+            <text>{{item.name}}</text>
+          </view>
+      </navigator>
+    </view>
+  </view>
+</view>
+
+
+

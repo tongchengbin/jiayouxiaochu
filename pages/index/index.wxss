@@ -1,0 +1,28 @@
+/**index.wxss**/
+.box{
+  padding:10rpx 0;
+  display: flex;
+  flex-wrap:wrap;
+}
+.item{
+  margin: 13rpx;
+  width: 350rpx;
+}
+.item  text{
+    font-weight: bold;
+    display: -webkit-box;
+    font-size:28rpx;
+    color:#000000;
+    line-height: 40rpx;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:1;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+
+.item image{
+  width: 100%;
+}
+
+

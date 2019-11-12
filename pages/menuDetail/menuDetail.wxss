@@ -1,0 +1,145 @@
+/* pages/menuDetail/menuDetail.wxss */
+
+.fixed{
+  position: fixed;
+}
+.left{
+  float: left
+}
+.right{
+  float: right
+}
+.lb{
+  margin: auto;
+  /* max-height: 500rpx; */
+  width: 750rpx;
+  overflow: hidden;
+}
+
+.lb .slide-image{
+  width: 100%;
+}
+
+
+swiper,swiper-item{
+  max-height: 450rpx!important;
+  height:100vh!important;
+}
+.page-container{
+  padding: 30rpx;
+  margin-bottom: 50rpx;
+}
+
+.info{
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  width: 100%;
+  height: 100%;
+}
+.name{
+  align-items: center;
+  margin:auto;
+  font-weight: bold;
+}
+
+
+/* 横着的分割View样式 */
+/*分割线样式*/
+.divLine{
+  margin: auto;
+ background: #E0E3DA;
+ width: 98%;
+ height: 5rpx;
+}
+
+.food{
+  padding: 20rpx 0;
+}
+.food-item{
+  margin:20rpx 10rpx;
+}
+
+.food .title{
+  margin: 40rpx 0rpx;
+  font-size: 40rpx;
+  font-weight: bold;
+
+}
+
+.food-info{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+}
+.clearfix:before {
+    content: "\20";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+
+
+  /* 步骤 */
+
+.step-item{
+  margin: 20rpx 0;
+
+}
+.step-title{
+  margin: 20rpx 0rpx;
+  font-size: 33rpx;
+  font-weight: bold;
+
+}
+
+.action-title{
+  padding-top: 30rpx;
+  padding-bottom: 10rpx;
+}
+.step-image{
+  width: 100%;
+  border-radius: 8rpx;
+}
+
+
+.foot{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70rpx;
+  background-color:#3C3C3C;
+}
+
+.foot view{
+  display: inline-block;
+  width: 25%;
+  text-align: center;
+  line-height: 70rpx;
+  color: #F7F7F7;
+  /* padding: 10rpx; */
+}
+
+
+.foot .foot-btn{
+  display: inline-block;
+  background-color:#3C3C3C;
+  line-height: 70rpx;
+  color: #F7F7F7;
+  text-align: center;
+
+
+}
+
+
+/*
+ #AAAAB6
+#E64340
+
+ */

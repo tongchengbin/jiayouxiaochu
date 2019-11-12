@@ -1,0 +1,54 @@
+<!--pages/menuDetail/menuDetail.wxml-->
+<view class="lb">
+        <swiper  bindchange="swiperchange"
+        indicator-dots="{{indicatorDots}}" 
+                    display-multiple-items="1" 
+                    circular="false" 
+                    indicator-dots	="true"
+                    autoplay="true" 
+                    interval="{{interval}}" 
+                    duration="{{duration}}" 
+                    easing-function="easeInOutCubic">
+            <block wx:for="{{data.imgs}}" wx:for-item="i" wx:key="i">
+                <swiper-item>
+                    <image src="{{i}}" class="slide-image" mode="aspectFill" />
+                </swiper-item>
+            </block>
+        </swiper>
+</view>
+<view class="page-container">
+  <view class="info">
+  <text class="name">{{data.name}}</text>
+  </view>
+
+  <view class="divLine"></view>
+  <view  class="food clearfix">
+    <view class="title">用料</view>
+    <view class="food-item" wx:for="{{data.foodlist}}" wx:key="item.id">
+      <view class="food-info">
+        <text class="left">{{item.name}}</text>
+        <text class="right">{{item.unit}}</text>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="divLine"></view>
+
+  <view  class="steps">
+    <view class="step-item clearfix" wx:for="{{data.steps}}" wx:key="item">
+      <view class="step-title">步骤{{index+1}}</view>
+      <image src="{{item.img}}" class="step-image" mode="aspectFill" />
+      <view class="action-title">{{item.title}}</view>
+    </view>
+  </view>
+
+</view>
+
+
+<view class="foot">
+  <view><button class="foot-btn">点赞</button></view>
+  <view><button class="foot-btn">点赞</button></view>
+  <view><button class="foot-btn">评论</button></view>
+  <view><button class="foot-btn"  open-type="share">分享</button></view>
+</view>
