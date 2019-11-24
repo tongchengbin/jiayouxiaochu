@@ -1,6 +1,15 @@
 //app.js
 App({
   onLaunch: function () {
+    // 状态栏
+    wx.getSystemInfo({
+      success: res => {
+        console.log(res)
+        this.globalData.navHeight = res.statusBarHeight;
+      },
+    })
+
+
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -35,6 +44,7 @@ App({
   },
   globalData: {
     host:"https://api.tongchengbin.com",
-    userInfo: null
+    userInfo: null,
+    navHeight: 0
   }
 })

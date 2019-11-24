@@ -1,0 +1,7 @@
+<!--pages/cate.wxml-->
+<view>
+  <view class="left-cate">
+    <view wx:for="{{bigcate}}" wx:for-item="item" wx:key="item">{{item.name}}</view>
+  </view>
+  <view class="right-cate"></view>
+</view>

@@ -44,11 +44,11 @@
   </view>
 
 </view>
-
+  
 
 <view class="foot">
   <view><button class="foot-btn">点赞</button></view>
-  <view><button class="foot-btn">点赞</button></view>
+  <view><button class="foot-btn">收藏</button></view>
   <view><button class="foot-btn">评论</button></view>
   <view><button class="foot-btn"  open-type="share">分享</button></view>
 </view>

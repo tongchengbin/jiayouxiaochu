@@ -1,19 +1,49 @@
 <!--index.wxml-->
+<!-- search -->
+<view class="header-search">
+  <view class="inner-search">
+    <icon size="20" class="icon-search" type="search"></icon>
+    <text>搜菜谱</text>
+  </view>
+</view>
+<view class="body">
+  <!-- 轮播图 -->
+      <swiper  bindchange="swiperchange"
+        indicator-dots="true"
+                    height="800"
+                    display-multiple-items="1" 
+                    circular="false" 
+                    indicator-dots	="true"
+                    autoplay="true" 
+                    interval="2000" 
+                    duration="500" 
+                    easing-function="easeInOutCubic"
+                    style="height:400rpx;"
+                    >
+            <block wx:for="{{imgs}}" wx:for-item="i" wx:key="i">
+                <swiper-item>
+                    <image src="{{i}}" class="slide-image" mode="aspectFill" />
+                </swiper-item>
+            </block>
+        </swiper>
+        <!-- 轮播图结束 -->
+    
 <view class="container">
-<!-- 搜索 -->
-  <view class="search"></view>
+  <view class="title">— 热门菜谱 —</view>
   <!-- 主体数据 -->
   <view class="box">
     <view class="item" wx:for="{{listdata}}" wx:key="item"  data-mid="{{item.id}}">
       <navigator url="/pages/menuDetail/menuDetail?mid={{item.id}}">
       <image src="{{item.display_img}}?x-oss-process=style/size" mode="aspectFill"></image>
-          <view class="item-info">
-            <text>{{item.name}}</text>
-          </view>
+      <view class="item-info"><text>{{item.name}}</text></view>
       </navigator>
     </view>
   </view>
 </view>
+ </view>
+
+
+
 
 
 

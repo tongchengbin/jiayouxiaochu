@@ -4,6 +4,7 @@ const app = getApp()
 import api from '../../utils/request'
 Page({
   data: {
+    imgs: ["https://wxins.oss-cn-shenzhen.aliyuncs.com/1445843633.jpg"],
     params:{"page":1},
     listdata:[],
     motto: 'Hello World',

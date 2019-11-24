@@ -1,0 +1,21 @@
+/* pages/cate.wxss */
+
+.left-cate{
+  overflow: auto;
+  height: 1200rpx;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 200rpx;
+  background-color: red;
+}
+
+.right-cate{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 550rpx;
+  background-color: red;
+}

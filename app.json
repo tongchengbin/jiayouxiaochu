@@ -1,13 +1,15 @@
 {
   "pages": [
-    
+    "pages/cate/cate",
     "pages/index/index",
     "pages/menuDetail/menuDetail",
+    
     "pages/logs/logs"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#ff6161",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },
@@ -25,7 +27,7 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/cate/cate",
         "iconPath": "images/nav/ic_catefory_normal.png",
         "selectedIconPath": "images/nav/ic_catefory_pressed.png",
         "text": "分类"
