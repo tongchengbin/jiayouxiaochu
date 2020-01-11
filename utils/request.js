@@ -10,7 +10,8 @@
  * 
  */
 
-const app = getApp()
+let host="https://api.tongchengbin.com";
+  // let host="http://127.0.0.1:9000"
 function wxPromisify(fn) {
   return function (obj = {}) {
     return new Promise((resolve, reject) => {
@@ -42,14 +43,37 @@ Promise.prototype.finally = function (callback) {
  * data 以对象的格式传入
  */
 function getRequest(url, data) {
+  console.debug("==GET===")
+  let token=wx.getStorageSync('token')
   var getRequest = wxPromisify(wx.request)
+  var header={
+    'Content-Type':'application/json'
+  }
+  if(token){
+    header.token=token
+  }
+  
+  
   return getRequest({
-    url: app.globalData.host+url,
+    url: host+url,
     method: 'GET',
     data: data,
-    header: {
-      'Content-Type': 'application/json'
+    header
+  }).then(res=>{
+    if(res.data.status==4003){
+      wx.showToast({
+        title: '认证过期',
+        mask:true,
+        icon:"none"
+      })
+      wx.removeStorageSync('token')
+      wx.removeStorageSync('openid')
+      wx.removeStorageSync('userinfo')
+      wx.switchTab({
+        url: '/pages/my/my',
+      })
     }
+    return res
   })
 }
 
@@ -59,14 +83,36 @@ function getRequest(url, data) {
  * data 以对象的格式传入
  */
 function postRequest(url, data) {
+  console.debug("==POST===")
   var postRequest = wxPromisify(wx.request)
+  let token=wx.getStorageSync('token')
+  var header={
+    'Content-Type':'application/json'
+  }
+  
+  if(token){
+    header.token=token
+  }
   return postRequest({
-    url: app.globalData.host + url,
+    url: host + url,
     method: 'POST',
     data: data,
-    header: {
-      "content-type": "application/json"
-    },
+    header
+  }).then(res=>{
+    if(res.data.status==4003){
+      wx.showToast({
+        title: '认证过期',
+        mask:true,
+        icon:"none"
+      })
+      wx.removeStorageSync('token')
+      wx.removeStorageSync('openid')
+      wx.removeStorageSync('userinfo')
+      wx.switchTab({
+        url: '/pages/my/my',
+      })
+    }
+    return res
   })
 }
 
@@ -81,13 +127,25 @@ function postRequest(url, data) {
  */
 function wxRequest(url, method,data) {
   var postRequest = wxPromisify(wx.request)
+  var local_userinfo=wx.getStorageSync('userinfo')
+  var header={
+    'Content-Type':'application/json'
+  }
+  if(local_userinfo && local_userinfo.token){
+    // header.token=local_userinfo.token
+  }
   return postRequest({
-    url: app.globalData.host + url,
+    url: host + url,
     method: method,
     data: data,
-    header: {
-      "content-type": "application/json"
-    },
+    header
+  }).then(res=>{
+    if(res.data.status==4003){
+      wx.setStorageSync('userinfo',{})
+      console.log("token过期")
+      wx.navigateTo({url: '/pages/my/my'})
+    }
+    return res
   })
 }
 

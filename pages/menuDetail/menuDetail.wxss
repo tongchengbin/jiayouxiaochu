@@ -20,7 +20,6 @@
   width: 100%;
 }
 
-
 swiper,swiper-item{
   max-height: 450rpx!important;
   height:100vh!important;
@@ -46,14 +45,14 @@ swiper,swiper-item{
 }
 
 
-/* 横着的分割View样式 */
-/*分割线样式*/
 .divLine{
   margin: auto;
  background: #E0E3DA;
  width: 98%;
  height: 5rpx;
 }
+
+
 
 .food{
   padding: 20rpx 0;
@@ -113,33 +112,34 @@ swiper,swiper-item{
   bottom: 0;
   left: 0;
   right: 0;
-  height: 70rpx;
-  background-color:#3C3C3C;
+  height: 100rpx;
+  background-color: #FFF;
+  border-top-color: #DDDDDD;
+  border-top-width: 2rpx;
+  border-top-style: solid;
 }
 
-.foot view{
-  display: inline-block;
-  width: 25%;
-  text-align: center;
-  line-height: 70rpx;
-  color: #F7F7F7;
-  /* padding: 10rpx; */
-}
 
 
 .foot .foot-btn{
+  width: 25%;
+  margin-top: 20rpx;
+  height: 60rpx;
   display: inline-block;
-  background-color:#3C3C3C;
-  line-height: 70rpx;
-  color: #F7F7F7;
   text-align: center;
-
-
+  color: #fff;
 }
-
-
+.foot-btn text{
+  color: #707070;
+  font-size: 50rpx;
+}
+.foot-btn .active{
+  color: #e64340;
+}
 /*
  #AAAAB6
 #E64340
 
  */
+
+

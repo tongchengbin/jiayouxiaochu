@@ -1,0 +1,49 @@
+page{
+  background-color: #F5F5F5;
+}
+/* login */
+.auth-login{
+  margin-top: 500rpx;
+}
+ .auth-login button{
+  border-radius: 180rpx;
+  margin: 70rpx 50rpx;
+  font-size: 35rpx;
+ }
+
+ /* my detail */
+ .avatar{
+   margin: auto;
+   height: 180rpx;
+   width: 180rpx;
+   border-radius: 20rpx;
+   overflow: hidden;
+ }
+ .userinfo .nickname{
+   margin: auto;
+   text-align: center;
+   font-weight: 700;
+ }
+
+ .avatar image{
+   height: 180rpx;
+   width: 180rpx;
+ }
+
+ .userinfo{
+   width: 100%;
+   margin-top: 0;
+   padding: 50rpx 0;
+   background-color: #fff;
+ }
+
+
+ .cards{
+   margin-top: 50rpx;
+   width: 100%;
+
+}
+.cards .card button{
+  background-color: #fff;
+  
+}

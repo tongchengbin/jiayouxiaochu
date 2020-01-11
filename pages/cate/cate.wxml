@@ -1,7 +1,26 @@
 <!--pages/cate.wxml-->
 <view>
-  <view class="left-cate">
-    <view wx:for="{{bigcate}}" wx:for-item="item" wx:key="item">{{item.name}}</view>
+  <view wx:if="{{showMenu}}" class="cate-title bg-success" bindtap="changeCate">切换食材分类</view>
+  <view wx:else class="cate-title bg-brand" bindtap="changeCate">切换菜单分类</view> 
+  <view wx:if="{{showMenu}}" class="menu cate">
+    <view class="items" wx:for="{{menu_cate}}" wx:for-item="item" wx:key="item">
+      <view class="title">{{item.name}}</view>
+      <view class="item-name">
+        <view class="name" wx:for="{{item.children}}" wx:for-item="i" wx:key="i" >
+        <navigator url="/pages/menuList/menuList?keyword={{i.name}}">{{i.name}}</navigator></view>
+      </view>
+    </view>
   </view>
-  <view class="right-cate"></view>
+  <view wx:if="{{!showMenu}}">
+    <view class="food cate">
+      <view class="items" wx:for="{{food_cate}}" wx:for-item="item" wx:key="item">
+        <view class="title">{{item.name}}</view>
+        <view class="item-name">
+          <view class="name" wx:for="{{item.children}}" wx:for-item="i" wx:key="i">
+          <navigator url="/pages/menuList/menuList?keyword={{i.name}}">{{i.name}}</navigator>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>

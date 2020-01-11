@@ -4,7 +4,7 @@ const app = getApp()
 import api from '../../utils/request'
 Page({
   data: {
-    imgs: ["https://wxins.oss-cn-shenzhen.aliyuncs.com/1445843633.jpg"],
+    swiperItems: [],
     params:{"page":1},
     listdata:[],
     motto: 'Hello World',
@@ -19,6 +19,7 @@ Page({
     })
   },
   onLoad: function () {
+    this.getSwiper()
     this.getList()
     
   },
@@ -41,6 +42,22 @@ Page({
   },
   toDetail(e){
     let mid = e.currentTarget.dataset['mid'];
-    console.log(mid)
-  }
+  },
+  getSwiper(){
+    api.wxRequest('/api/frontend/wx/swiper/', 'GET', {}).then(res => {
+      this.setData({ "swiperItems": res.data.data})
+    })
+  },
+  swiperchange(){
+
+  },
+  onPullDownRefresh() {
+    // 上拉刷新
+    if (!this.loading) {
+      this. fetchArticleList(1, true).then(() => {
+        // 处理完成后，终止下拉刷新
+        wx.stopPullDownRefresh()
+      })
+    }
+  },
 })

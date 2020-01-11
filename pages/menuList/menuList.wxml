@@ -1,0 +1,53 @@
+<!--index.wxml-->
+<!-- search -->
+<view class="header-search">
+  <view class="inner-search">
+    <icon class="searchcion" size='20' type='search'></icon>
+    <input class="search-input" bindinput="updateValue" bindconfirm="getList" value="{{params.keyword}}"  placeholder="搜菜谱" placeholder-class="placeholder-center" confirm-type="search"
+      bindfocus="startInput" bindblur="outInput"></input>
+    <view class="search-text"><text bindtap="searchSubmit"  data-type='refresh'>搜索</text></view>
+  </view>
+</view>
+<view class="container">
+  <!-- 主体数据 -->
+  <view class="box">
+    <view class="item" wx:for="{{listdata}}" wx:key="item"  data-mid="{{item.id}}">
+      <navigator url="/pages/menuDetail/menuDetail?mid={{item.id}}">
+      <view class="item-img">
+        <image src="{{item.display_img}}?x-oss-process=image/resize,m_fill,w_560,h_340/quality,q_50/format,jpg" mode="scaleToFill"></image>
+      </view>
+      <view class="item-info">
+        <view class="item-title">{{item.name}}</view>
+        <view class="item-foods">{{item.foods}}</view>
+        <view class="item-rate">
+          <view class="item-dz">{{item.dz_cnt}}点赞</view>
+          <view class="item-sc">{{item.sc_cnt}}收藏</view>
+        </view>
+      <!-- <text>{{item.name}}</text> -->
+      </view>
+      </navigator>
+    </view>
+    
+  </view>
+  <view  hidden="{{ listdata.length==0 || listdta.length<listInfo.maxPage }}" class="list-end">— 家有小厨 —</view>
+    <view class="nodata" hidden="{{listdata.length>0}}">
+      <image src="/images/icon/nodata.png"></image>
+    </view>
+
+  <view class="search-list" hidden="{{!showHistoryList}}">
+    <view class="history-title">历史搜索</view>
+    <view class="history-items">
+      <view class="key-name" bindtap="insertKey" data-name="测试">测试</view>
+    </view>
+    <view class="history-title">热门搜索</view>
+    <view>
+      <view class="key-name" bindtap="insertKey" data-name="{{item}}" wx:for="{{hotkey}}" wx:key="item">{{item}}</view>
+    </view>
+  </view>
+</view>
+
+
+
+
+
+

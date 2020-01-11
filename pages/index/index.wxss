@@ -13,15 +13,17 @@
   margin-right: 15rpx;
 }
 .inner-search{
-  padding: 10rpx;
+  position: absolute;
+  top: 20rpx;
+  bottom: 20rpx;
+  left: 90rpx;
+  right: 90rpx;
   background-color: #fff;
-  width: 75%;
-  margin: auto;
   border-radius: 10rpx;
   text-align: center;
   font-size: 34rpx;
-  color: #7D8695;
-  font-weight: bold;
+  color: #A8A8A8;
+  line-height: 60rpx;
 }
 /* lb */
 .body{
@@ -36,6 +38,7 @@
   padding: 20rpx 0rpx;
 }
 .container .title{
+  color: #6b6a6a;
   font-weight: bold;
   font-size: 36rpx;
 }

@@ -1,4 +1,4 @@
-// pages/cate.js
+// pages/search/search.js
 const app = getApp()
 import api from '../../utils/request'
 Page({
@@ -7,18 +7,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // 默认显示菜单
-    showMenu:true,
-    food_cate:[],
-    menu_cate:[]
+    hotKey:[],
+    hisKey:[""]
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getMenuCate()
-    this.getFoodCate()
+    api.wxRequest('/api/frontend/wx/hot_key/', 'GET', {}).then(res => {
+      this.setData({"hotkey":res.data})
+      this.setData({ "showHistoryList": true })
+    })
+
+
 
   },
 
@@ -69,22 +72,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  getFoodCate: function () {
-    api.wxRequest('/api/frontend/wx/get_food_cate/', 'GET', {}).then(res => {
-      this.setData({ "food_cate": res.data })
-    })
-  },
-  getMenuCate: function () {
-    api.wxRequest('/api/frontend/wx/get_menu_cate/', 'GET', {}).then(res => {
-      this.setData({ "menu_cate": res.data })
-    })
-  },
-  changeCate:function(){
-    this.setData({"showMenu":!this.data.showMenu})
-  },
-  toSearch(options){
-    let name = options.currentTarget.dataset.name
-    wx.navigateTo('../menuList/menuList?keyword='+name)
   }
 })

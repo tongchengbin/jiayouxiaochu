@@ -4,8 +4,9 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
+		"enhance": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
@@ -21,7 +22,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.9.1",
+	"libVersion": "2.10.0",
 	"appid": "wx06409552ce374652",
 	"projectname": "jiayouxiaochu",
 	"debugOptions": {

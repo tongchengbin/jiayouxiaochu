@@ -1,0 +1,22 @@
+<view class="container">
+  <block wx:if="{{islogin}}">
+  <view class="userinfo">
+    <!-- 头像 -->
+    <view class="avatar"><image src="{{userinfo.avatar}}"></image></view>
+    <!-- 昵称 -->
+    <view class="nickname">{{userinfo.username}}</view>  
+  </view>
+  <view class="cards">
+    <view class="card"><button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">我的收藏夹</button></view>
+    <view class="card"><button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">分享给好友</button></view>
+  </view>
+  </block>
+  <block wx:else>
+    <view class="auth-login">
+      <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
+      授权登录
+      </button>
+    </view>
+  </block>
+</view>
+

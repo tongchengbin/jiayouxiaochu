@@ -1,0 +1,22 @@
+<view>
+  <view class="com-list" >
+    <view class="com-item" wx:for="{{comList}}" wx:key='item'>
+      <view class="item-header">
+        <view class="avatar"><image src="{{item.avatar}}"></image></view>
+        <view class="username">{{item.username}}</view>
+        <view class="addtime">{{item.add_time}}</view>
+      </view>
+      <view class="item-content">
+        {{item.content}}
+      </view>  
+
+    </view>
+
+  </view>
+  <view class="comment">
+    <view class="content">
+      <input class="content-in" value="{{comment.content}}" bindinput="comtentInput" cursor-spacing="10"></input>
+      <text class="submit" bindtap="submitComment">提交</text>
+    </view>
+  </view>
+</view>

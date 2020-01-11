@@ -1,0 +1,16 @@
+<view>
+<!-- 左侧菜单 -->
+  <view class="list-left-menu">
+    <view wx:for="{{listData}}" wx:key="unique" class="{{index==activeIndex?'list-left-menu-selected':''}} list-left-menu-item" data-index="{{index}}" bindtap='selectMenu'>
+      <view class="list-menu-name">{{item.name}}</view>
+    </view>
+  </view>
+  <!-- 右侧菜单 -->
+  <view class="right-menu">
+      <view class="content" hidden="{{index!==activeIndex}}" wx:for="{{listData}}" wx:key="unique">
+        <view class='cell' wx:for="{{item.childrens}}" wx:for-item="cell" wx:key="unique">
+        <view class="item-name" bindtap="toSearch" data-name="{{cell.name}}">{{ cell.name}}</view>
+        </view>
+        </view>
+  </view>
+</view>

@@ -1,4 +1,4 @@
-// pages/cate.js
+// pages/catelist/catelist.js
 const app = getApp()
 import api from '../../utils/request'
 Page({
@@ -7,18 +7,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // 默认显示菜单
-    showMenu:true,
-    food_cate:[],
-    menu_cate:[]
+    "listData":[],
+    activeIndex: 0,
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getMenuCate()
-    this.getFoodCate()
+    this.getList()
 
   },
 
@@ -40,6 +38,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
+   
 
   },
 
@@ -47,6 +46,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
+    
 
   },
 
@@ -70,21 +70,25 @@ Page({
   onShareAppMessage: function () {
 
   },
-  getFoodCate: function () {
-    api.wxRequest('/api/frontend/wx/get_food_cate/', 'GET', {}).then(res => {
-      this.setData({ "food_cate": res.data })
+  getList(){
+    api.wxRequest('/api/frontend/wx/cate_list/', 'GET', {}).then(res => {
+      this.setData({ "listData": res.data })
+    })
+
+  },
+  selectMenu: function (e) {
+    var index = e.currentTarget.dataset.index
+    console.log(index)
+    this.setData({
+      activeIndex: index,
+      toView: 'a' + index,
+
     })
   },
-  getMenuCate: function () {
-    api.wxRequest('/api/frontend/wx/get_menu_cate/', 'GET', {}).then(res => {
-      this.setData({ "menu_cate": res.data })
+  toSearch(e){
+    let name=e.currentTarget.dataset.name
+    wx.navigateTo({
+      url: '/pages/menuList/menuList?keyword='+name,
     })
-  },
-  changeCate:function(){
-    this.setData({"showMenu":!this.data.showMenu})
-  },
-  toSearch(options){
-    let name = options.currentTarget.dataset.name
-    wx.navigateTo('../menuList/menuList?keyword='+name)
   }
 })

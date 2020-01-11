@@ -1,11 +1,13 @@
 <!--index.wxml-->
 <!-- search -->
 <view class="header-search">
+  <navigator url="/pages/menuList/menuList">
   <view class="inner-search">
-    <icon size="20" class="icon-search" type="search"></icon>
-    <text>搜菜谱</text>
+      <icon size="20" class="icon-search" type="search"></icon>
+      <text>搜菜谱、食材</text>
+    </view>
+  </navigator>
   </view>
-</view>
 <view class="body">
   <!-- 轮播图 -->
       <swiper  bindchange="swiperchange"
@@ -20,9 +22,9 @@
                     easing-function="easeInOutCubic"
                     style="height:400rpx;"
                     >
-            <block wx:for="{{imgs}}" wx:for-item="i" wx:key="i">
+            <block wx:for="{{swiperItems}}" wx:for-item="i" wx:key="i">
                 <swiper-item>
-                    <image src="{{i}}" class="slide-image" mode="aspectFill" />
+                    <navigator url="/pages/menuDetail/menuDetail?mid={{i.id}}"><image src="{{i.display_img}}" class="slide-image" mode="aspectFill" /></navigator>
                 </swiper-item>
             </block>
         </swiper>
@@ -34,7 +36,7 @@
   <view class="box">
     <view class="item" wx:for="{{listdata}}" wx:key="item"  data-mid="{{item.id}}">
       <navigator url="/pages/menuDetail/menuDetail?mid={{item.id}}">
-      <image src="{{item.display_img}}?x-oss-process=style/size" mode="aspectFill"></image>
+      <image src="{{item.display_img}}?x-oss-process=image/resize,m_fill,w_670,h_450/quality,q_50/format,jpg" mode="aspectFill"></image>
       <view class="item-info"><text>{{item.name}}</text></view>
       </navigator>
     </view>

@@ -20,21 +20,17 @@
   <view class="info">
   <text class="name">{{data.name}}</text>
   </view>
-
   <view class="divLine"></view>
   <view  class="food clearfix">
     <view class="title">用料</view>
-    <view class="food-item" wx:for="{{data.foodlist}}" wx:key="item.id">
+    <view class="food-item" wx:for="{{data.foodlist}}" wx:key="id">
       <view class="food-info">
         <text class="left">{{item.name}}</text>
         <text class="right">{{item.unit}}</text>
       </view>
     </view>
   </view>
-
-
   <view class="divLine"></view>
-
   <view  class="steps">
     <view class="step-item clearfix" wx:for="{{data.steps}}" wx:key="item">
       <view class="step-title">步骤{{index+1}}</view>
@@ -42,13 +38,13 @@
       <view class="action-title">{{item.title}}</view>
     </view>
   </view>
-
 </view>
-  
 
+
+<!-- 评论层结束 -->
 <view class="foot">
-  <view><button class="foot-btn">点赞</button></view>
-  <view><button class="foot-btn">收藏</button></view>
-  <view><button class="foot-btn">评论</button></view>
-  <view><button class="foot-btn"  open-type="share">分享</button></view>
+  <view bindtap="dianZhan" class="foot-btn"><text class="iconfont icon-dianzan1 {{data.user.dianzhan?'active':''}}"></text></view>
+  <view bindtap="shouchang" class="foot-btn"><text class="iconfont icon-collection-b {{data.user.shoucang?'active':''}}"></text></view>
+  <view bindtap="comment" class="foot-btn"><text class="iconfont icon-pingluncomment43"></text></view>
+  <view class="foot-btn"><text class="iconfont icon-fenxiang"></text></view>
 </view>

@@ -1,0 +1,70 @@
+/* pages/list/list.wxss */
+.list-left-menu{
+  overflow-y: auto;
+  width:180rpx;
+  position: absolute;
+  left:0px;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+}
+.list-left-menu-item{
+  padding: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size:30rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+
+  color: #505050;
+  background:#FFF9F9;
+  overflow: hidden;
+}
+.list-left-menu-selected{
+  color: #ff6161;
+  border-left:3px solid #ff6161;
+  background:white;
+  overflow: hidden;
+}
+
+.list-tab{
+  margin-left:170rpx;
+  font-size:25rpx;
+  background:#F3F4F6;
+  color:#CBCCCF;
+  padding:2px
+}
+.list-menu-name{
+  text-align: center;
+  margin-top:14rpx;
+}
+.right-menu{
+  position: absolute;
+  padding-top: 50rpx;
+  left: 190rpx;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+}
+.content{
+  flex-wrap:wrap;
+  display: flex;
+  flex-direction: row;
+  line-height: 35rpx;
+}
+.cell{
+  margin: 15rpx 15rpx;
+}
+.item-name{
+  color: #808080;
+  border: lightgrey;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 10rpx;
+  padding: 10rpx 20rpx;
+}
