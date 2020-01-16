@@ -18,5 +18,4 @@ App({
   globalData: {
     navHeight: 0
   },
-  
 })

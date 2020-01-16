@@ -1,14 +1,16 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/my/my",
-     "pages/menuDetail/menuDetail",
-    "pages/catelist/catelist",
+    "pages/favorites/favorites",
     
+    "pages/my/my",
+    "pages/menuDetail/menuDetail",
+    "pages/catelist/catelist",
     "pages/menuList/menuList",
     "pages/search/search",
     "pages/logs/logs",
-    "pages/comment/comment"
+    "pages/comment/comment",
+    "components/tips/tips"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -31,8 +33,8 @@
       },
       {
         "pagePath": "pages/catelist/catelist",
-        "iconPath": "images/nav/ic_catefory_normal.png",
-        "selectedIconPath": "images/nav/ic_catefory_pressed.png",
+        "iconPath": "images/nav/category-off.png",
+        "selectedIconPath": "images/nav/category-on.png",
         "text": "分类"
       },
       {

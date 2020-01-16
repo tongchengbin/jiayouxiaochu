@@ -9,7 +9,7 @@
  *  *Copyright (c) 2017 https://www.watch-life.net All rights reserved.
  * 
  */
-
+import {showTopTip} from 'util'
 let host="https://api.tongchengbin.com";
   // let host="http://127.0.0.1:9000"
 function wxPromisify(fn) {
@@ -89,7 +89,6 @@ function postRequest(url, data) {
   var header={
     'Content-Type':'application/json'
   }
-  
   if(token){
     header.token=token
   }
@@ -99,12 +98,11 @@ function postRequest(url, data) {
     data: data,
     header
   }).then(res=>{
-    if(res.data.status==4003){
-      wx.showToast({
-        title: '认证过期',
-        mask:true,
-        icon:"none"
-      })
+    if(res.status==500){
+
+    }
+    if(res.data.status==4003 ||res.data.status==403){
+      showTopTip("认证过期","Error")
       wx.removeStorageSync('token')
       wx.removeStorageSync('openid')
       wx.removeStorageSync('userinfo')

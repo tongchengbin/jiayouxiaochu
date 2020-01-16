@@ -1,4 +1,10 @@
 <!--pages/menuDetail/menuDetail.wxml-->
+<import src="../../templates/login.wxml" />
+
+<!-- tips -->
+<tips id='tips'></tips>
+<!-- tips-->
+<view ></view>
 <view class="lb">
         <swiper  bindchange="swiperchange"
         indicator-dots="{{indicatorDots}}" 
@@ -43,8 +49,10 @@
 
 <!-- 评论层结束 -->
 <view class="foot">
-  <view bindtap="dianZhan" class="foot-btn"><text class="iconfont icon-dianzan1 {{data.user.dianzhan?'active':''}}"></text></view>
-  <view bindtap="shouchang" class="foot-btn"><text class="iconfont icon-collection-b {{data.user.shoucang?'active':''}}"></text></view>
-  <view bindtap="comment" class="foot-btn"><text class="iconfont icon-pingluncomment43"></text></view>
-  <view class="foot-btn"><text class="iconfont icon-fenxiang"></text></view>
+  <view bindtap="dianZhan" class="foot-btn"><button class="iconfont icon-dianzan1 {{data.user.dianzhan?'active':''}}"></button></view>
+  <view bindtap="shouchang" class="foot-btn"><button class="iconfont icon-collection-b {{data.user.shoucang?'active':''}}"></button></view>
+  <view bindtap="comment" class="foot-btn"><button class="iconfont icon-pingluncomment43"></button></view>
+  <view class="foot-btn"><button open-type="share" class="iconfont icon-fenxiang"></button></view>
 </view>
+
+<template is="login" data="{{showPopup: showPopup, canIUse: canIUse}}"></template>

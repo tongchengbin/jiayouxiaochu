@@ -20,6 +20,7 @@ page{
    overflow: hidden;
  }
  .userinfo .nickname{
+   color: #fff;
    margin: auto;
    text-align: center;
    font-weight: 700;
@@ -34,7 +35,7 @@ page{
    width: 100%;
    margin-top: 0;
    padding: 50rpx 0;
-   background-color: #fff;
+   background-color: #ff6161;
  }
 
 

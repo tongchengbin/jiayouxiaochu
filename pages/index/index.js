@@ -19,6 +19,7 @@ Page({
     })
   },
   onLoad: function () {
+    console.log("index onload")
     this.getSwiper()
     this.getList()
     

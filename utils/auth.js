@@ -1,4 +1,5 @@
 import api from 'request'
+import {showTopTip} from 'util'
 function checkSession(){
   // 检测session
   return new Promise((resolve, reject) => {
@@ -12,11 +13,25 @@ function checkSession(){
     })
   })
 }
+function checkToken(){
+  return new Promise((resolve,reject)=>{
+    let token=wx.getStorageSync('token')
+    let userinfo=wx.getStorageSync('userinfo')
+    if(token && userinfo){
+        resolve(true)
+
+    }else{
+      loginOut()
+      resolve(false)
+    }
+  })
+}
 
 function loginOut(){
   // 登出  清空token openid
   wx.removeStorageSync('token')
   wx.removeStorageSync('openid')
+  wx.removeStorageSync('userinfo')
 }
 
 
@@ -27,12 +42,10 @@ async function checkSetting(){
         complete: (res) => {
           // settings results
           if(res.authSetting["scope.userInfo"]){
-            console.log("已授权")
             return resolve(true)
           }else{
-            console.log("需要授权")
+            return resolve(false)
           }
-          console.log(res) 
         },
       })
     })
@@ -102,9 +115,12 @@ function checkLogin(){
   }
 }
 
-async function checkAuth(){
+async function checkAuth(isNeed){
   // 检测身份 同时登录
   /*
+  isNeed:是否必须登陆
+
+
   1: 检测session 是否有效
   2：检测检测是否授权
   3：检测本地是否有tokne 和openid
@@ -117,23 +133,56 @@ async function checkAuth(){
   }
   // 2
   const settings=await checkSetting()
-  console.log(settings,"settings")
   if(!settings){
     return false
   }
   // 检测userinfo
   const userinfo=await checkUserInfo()
-  console.log("userinfo",userinfo)
   if(!userinfo){
     return false
   }
   const isLogin=await checkLogin()
-  console.log("is login",isLogin)
   return isLogin
 }
 
 
+async function login(){
+  return new Promise((resolve,reject)=>{
+    // 在有授权的情况下进行服务器登录
+    wx.getUserInfo({
+      complete: (userinfo) => {
+        //开始服务器登陆
+        let data={"encryptedData":userinfo.encryptedData,"iv":userinfo.iv}
+        wx.login({
+          complete: (res) => {
+            data["code"]=res.code
+            api.postRequest('/api/frontend/wx/updateUser/', data).then(res => {
+              //服务器返回登陆结果
+              let userinfo={
+                  "username":res.data.username,
+                  "gender":res.data.gender,
+                  "avatar":res.data.avatar
+              }
+              let token=res.data.token
+              let openid=res.data.openid
+              wx.setStorageSync('userinfo', userinfo)
+              wx.setStorageSync('token',token)
+              wx.setStorageSync('openid', openid)
+              // 登陆成功
+              resolve(true)
+            })
+          },
+        })
+      },
+    })
+    // 
+  })
+}
+
+
 module.exports = {
+  login:login,
   checkAuth:checkAuth,
+  checkToken:checkToken,
   loginOut: loginOut,
 }

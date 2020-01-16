@@ -1,0 +1,26 @@
+
+<!-- tips -->
+<tips id='tips'></tips>
+<!-- tips-->
+
+<view>
+  <!-- 主体数据 -->
+  <view class="box">
+    <view class="item" wx:for="{{listdata}}" wx:key="item"  data-mid="{{item.id}}">
+      <view class="item-img">
+        <image src="{{item.display_img}}?x-oss-process=image/resize,m_fill,w_290,h_200/quality,q_50/format,jpg" mode="scaleToFill"></image>
+      </view>
+      <view class="item-info">
+        <view class="item-title">{{item.name}}</view>
+        <view class="item-foods">{{item.foods}}</view>
+        <view class="item-rate">
+          <view class="item-dz">{{item.dz_cnt}}点赞</view>
+          <view class="item-sc">{{item.sc_cnt}}收藏</view>
+          <view class="item-dt">{{item.add_time}}</view>
+        </view>
+        
+      </view>
+    </view>
+  </view>
+</view>
+

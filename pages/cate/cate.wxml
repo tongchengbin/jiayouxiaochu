@@ -1,4 +1,10 @@
 <!--pages/cate.wxml-->
+
+
+<!-- tips -->
+<tips id='tips'></tips>
+<!-- tips-->
+
 <view>
   <view wx:if="{{showMenu}}" class="cate-title bg-success" bindtap="changeCate">切换食材分类</view>
   <view wx:else class="cate-title bg-brand" bindtap="changeCate">切换菜单分类</view> 

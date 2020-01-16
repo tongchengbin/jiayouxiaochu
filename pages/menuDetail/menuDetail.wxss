@@ -1,5 +1,5 @@
 /* pages/menuDetail/menuDetail.wxss */
-
+@import "../../templates/login.wxss";
 .fixed{
   position: fixed;
 }
@@ -112,18 +112,26 @@ swiper,swiper-item{
   bottom: 0;
   left: 0;
   right: 0;
-  height: 100rpx;
+  height: 90rpx;
   background-color: #FFF;
   border-top-color: #DDDDDD;
   border-top-width: 2rpx;
   border-top-style: solid;
 }
 
-
-
+.foot-btn button{
+  line-height: 70rpx;
+  padding: 5rpx 0;
+  position: none!important;
+  display: inline;
+  color: #707070;
+  font-size: 50rpx;
+  border: none;
+  background-color: none;
+}
 .foot .foot-btn{
   width: 25%;
-  margin-top: 20rpx;
+  margin-top: 10rpx;
   height: 60rpx;
   display: inline-block;
   text-align: center;
@@ -143,3 +151,7 @@ swiper,swiper-item{
  */
 
 
+button:after{
+  border: none;
+
+}

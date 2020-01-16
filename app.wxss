@@ -1,4 +1,7 @@
 /**app.wxss**/
+@import "templates/login.wxss";
+
+
 .container {
   height: 100%;
   display: flex;
@@ -10,9 +13,6 @@
 .custom{
   background-color: red;
 }
-
-
-
 
 
 

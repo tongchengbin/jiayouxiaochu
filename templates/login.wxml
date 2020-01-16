@@ -1,0 +1,16 @@
+<!--templates/login.wxml-->
+
+<template name="login">
+  <view class="popup {{ showPopup ? '' : 'hidden'}}">
+    <view class="popup-mark"></view>
+    <view class="popup-container">
+      <view class="popup-box" wx:if="{{canIUse}}">
+        <view><!-- <image style='width: 100rpx;height: 100rpx;margin: 20rpx;border-radius: 50%;' src="../../images/icon/gravatar.png" background-size="cover"></image> --></view>
+        <view class='popup-desc'><text>允许微信授权后，可体验更多功能</text></view>
+        <view class="popup-btn"><button open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo" class="">授权登录</button></view>
+      </view>
+      <view wx:else class='zan-font-16 zan-c-red' style='text-align:center;margin-top:50rpx'>
+        您的微信版本过低，请升级后再次体验</view>
+    </view>
+  </view>
+</template>

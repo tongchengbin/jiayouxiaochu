@@ -1,5 +1,9 @@
 <!--index.wxml-->
 <!-- search -->
+
+<!-- tips -->
+<tips id='tips'></tips>
+<!-- tips-->
 <view class="header-search">
   <navigator url="/pages/menuList/menuList">
   <view class="inner-search">
@@ -43,8 +47,6 @@
   </view>
 </view>
  </view>
-
-
 
 
 

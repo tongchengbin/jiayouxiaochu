@@ -1,0 +1,30 @@
+/* components/tips/tips.wxss */
+
+.Info{
+  background-color: #2d8cf0;
+  }
+.Success {
+  background-color: #19be6b;
+}
+
+.Warning{
+  background-color: #ff9900;
+}
+.Error{
+  background-color: #ed3f14;
+}
+.toptips {
+  position: fixed;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 5px;
+  font-size: 14px;
+  text-align: center;
+  color: #fff;
+  z-index: 5000;
+  word-wrap: break-word;
+  word-break: break-all;
+}

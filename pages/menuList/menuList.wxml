@@ -1,5 +1,9 @@
 <!--index.wxml-->
 <!-- search -->
+
+<!-- tips -->
+<tips id='tips'></tips>
+<!-- tips-->
 <view class="header-search">
   <view class="inner-search">
     <icon class="searchcion" size='20' type='search'></icon>

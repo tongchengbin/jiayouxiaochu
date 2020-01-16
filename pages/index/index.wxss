@@ -21,9 +21,12 @@
   background-color: #fff;
   border-radius: 10rpx;
   text-align: center;
-  font-size: 34rpx;
+  font-size: 28rpx;
   color: #A8A8A8;
   line-height: 60rpx;
+}
+.inner-search icon{
+  font-size: 28rpx;
 }
 /* lb */
 .body{
@@ -40,7 +43,7 @@
 .container .title{
   color: #6b6a6a;
   font-weight: bold;
-  font-size: 36rpx;
+  font-size: 28rpx;
 }
 .box{
   width: 670rpx;

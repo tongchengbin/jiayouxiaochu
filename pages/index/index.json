@@ -6,7 +6,9 @@
     "navigationBarTitleText": "家有小厨",
     "navigationBarTextStyle": "white"
   },
-  "usingComponents": {}
+  "usingComponents": {
+    "tips": "/components/tips/tips"
+  }
   
 
 }

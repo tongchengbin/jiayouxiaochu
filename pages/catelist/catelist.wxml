@@ -1,3 +1,8 @@
+
+<!-- tips -->
+<tips id='tips'></tips>
+<!-- tips-->
+
 <view>
 <!-- 左侧菜单 -->
   <view class="list-left-menu">

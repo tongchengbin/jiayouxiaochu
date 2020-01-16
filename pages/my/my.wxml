@@ -1,3 +1,4 @@
+<import src="../../templates/login.wxml" />
 <view class="container">
   <block wx:if="{{islogin}}">
   <view class="userinfo">
@@ -8,7 +9,7 @@
   </view>
   <view class="cards">
     <view class="card"><button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">我的收藏夹</button></view>
-    <view class="card"><button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">分享给好友</button></view>
+    <view class="card"><button open-type="share" lang="zh_CN" bindgetuserinfo="onGotUserInfo">分享给好友</button></view>
   </view>
   </block>
   <block wx:else>
@@ -20,3 +21,5 @@
   </block>
 </view>
 
+
+<template is="login" data="{{showPopup: showPopup, canIUse: canIUse}}"></template>

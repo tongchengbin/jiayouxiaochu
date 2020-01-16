@@ -13,7 +13,14 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
-
+async function showTopTip(msg,type){
+  let pages=getCurrentPages()
+  console.log(pages[pages.length-1])
+  pages[pages.length-1].selectComponent("#tips").showTopTip(msg,type)
+  
+}
 module.exports = {
+  showTopTip:showTopTip,
   formatTime: formatTime
 }
+
