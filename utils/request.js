@@ -43,7 +43,6 @@ Promise.prototype.finally = function (callback) {
  * data 以对象的格式传入
  */
 function getRequest(url, data) {
-  console.debug("==GET===")
   let token=wx.getStorageSync('token')
   var getRequest = wxPromisify(wx.request)
   var header={
@@ -52,28 +51,25 @@ function getRequest(url, data) {
   if(token){
     header.token=token
   }
-  
-  
-  return getRequest({
-    url: host+url,
-    method: 'GET',
-    data: data,
-    header
-  }).then(res=>{
-    if(res.data.status==4003){
-      wx.showToast({
-        title: '认证过期',
-        mask:true,
-        icon:"none"
-      })
-      wx.removeStorageSync('token')
-      wx.removeStorageSync('openid')
-      wx.removeStorageSync('userinfo')
-      wx.switchTab({
-        url: '/pages/my/my',
-      })
-    }
-    return res
+  return new Promise((resolve,reject)=>{
+    getRequest({
+      url: host+url,
+      method: 'GET',
+      data: data,
+      header
+    }).then(res=>{
+      if(res.data.status==4003 || res.data.status==403 ){
+        wx.showToast({title: '认证过期',mask:true,icon:"none"})
+        wx.removeStorageSync('token')
+        wx.removeStorageSync('openid')
+        wx.removeStorageSync('userinfo')
+        wx.switchTab({url: '/pages/my/my'})
+        resolve(res)
+      }
+      return resolve(res)
+    })
+
+
   })
 }
 
@@ -99,9 +95,10 @@ function postRequest(url, data) {
     header
   }).then(res=>{
     if(res.status==500){
-
+      showTopTip("网络异常,请稍后再试!",'Error')
     }
-    if(res.data.status==4003 ||res.data.status==403){
+    console.log(res.data.status,"status")
+    if(res.data.status==4003 || res.data.status==403){
       showTopTip("认证过期","Error")
       wx.removeStorageSync('token')
       wx.removeStorageSync('openid')

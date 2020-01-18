@@ -19,7 +19,6 @@ function checkToken(){
     let userinfo=wx.getStorageSync('userinfo')
     if(token && userinfo){
         resolve(true)
-
     }else{
       loginOut()
       resolve(false)
@@ -151,14 +150,17 @@ async function login(){
     // 在有授权的情况下进行服务器登录
     wx.getUserInfo({
       complete: (userinfo) => {
+        console.log("get userinfo",userinfo)
         //开始服务器登陆
         let data={"encryptedData":userinfo.encryptedData,"iv":userinfo.iv}
         wx.login({
           complete: (res) => {
             data["code"]=res.code
             api.postRequest('/api/frontend/wx/updateUser/', data).then(res => {
-              //服务器返回登陆结果
-              let userinfo={
+              console.log("server login ：",res.data)
+              if(res.data.token){
+                //服务器返回登陆结果
+                let userinfo={
                   "username":res.data.username,
                   "gender":res.data.gender,
                   "avatar":res.data.avatar
@@ -170,6 +172,11 @@ async function login(){
               wx.setStorageSync('openid', openid)
               // 登陆成功
               resolve(true)
+              }else{
+                showTopTip("服务器登录失败","Error")
+                resolve(false)
+              }
+              
             })
           },
         })

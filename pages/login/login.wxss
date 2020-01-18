@@ -1,0 +1,60 @@
+
+page{
+  background-color: #F8F8FB;
+}
+.page-top{
+  height: 500rpx;
+  width: 100%;
+  background-color: #ff6161;
+}
+
+
+.lf{
+  padding: 20rpx;
+  z-index: 999;
+  position: absolute;
+  top: 200rpx;
+  margin: auto;
+  left: 100rpx;
+  width: 550rpx;
+  height: 400rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+}
+
+.lf .in-txt{
+  text-align: center;
+  color: #ff6161;
+  font-weight: 400;
+}
+.lf .btn-in{
+  font-size: 24rpx;
+  color: #fff;
+  text-align: center;
+  background-color:#ff6161;
+  border-radius: 10rpx;
+  padding: 5rpx;
+  margin: 20rpx;
+
+}
+.lf input{
+  padding-left: 20rpx;
+  display: inline-flex;
+}
+.lf .email{
+  margin: 20rpx;
+}
+.lf .pwd{
+  
+  margin: 20rpx;
+}
+
+.aline {
+  background-color:#E6E3E3;
+  height:1px;
+}
+
+.tb-10{
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}

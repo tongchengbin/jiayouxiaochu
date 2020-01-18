@@ -19,7 +19,7 @@ Page({
     indicatorDots: true,
     interval: 2000,
     duration: 500,
-    user:{dianzhan:false,shoucang:""},
+    user:{dianzhan:false,shoucang:false},
     data:{},
     mid:null
   },
@@ -32,7 +32,7 @@ Page({
     if(mid==undefined){
       mid=10
     }
-    
+    console.log(getCurrentPages())
     this.setData({ "mid": mid})
     // check session
     // is token
@@ -48,35 +48,37 @@ Page({
   getDetail:function(){
     api.getRequest('/api/frontend/wx/getmenu/', { "mid": this.data.mid}).then(res=>{
       this.setData({"data":res.data})
-      this.setData({"user.dianzhan":res.data.user.dianzhan,"shoucang":res.data.shoucang})
+      this.setData({"user.dianzhan":res.data.user.dianzhan,"user.shoucang":res.data.user.shoucang})
     })
   },
   dianZhan(){
-    // 检测身份
-    this.needLogin().then(isLogin=>{
+    AUTH.checkToken().then(isLogin=>{
      if(isLogin){
-       let action_type =  this.user.dianzhan? 30:10
+       let action_type =  this.data.user.dianzhan? 30:10
+       console.log(action_type)
        api.postRequest('/api/frontend/wx/action/',{"id":this.data.mid,"action_type":action_type}).then(res=>{
-         this.setData({"user.dianzhan":!this.user.dianzhan})
+         this.setData({"user.dianzhan":action_type==30?false:true})
        })
      }else{
-      // 开始登陆
-      this.setData({"showPopup":true})
+       wx.switchTab({
+         url: '/pages/my/my',
+       })
      }
     })},
   shouchang(){
-    this.needLogin().then(isLogin=>{
-      // islogin false 包括用户拒绝授权 和服务器登录失败
-      if(isLogin){
-        api.postRequest('/api/frontend/wx/action/',{"id":this.data.mid,"action_type":20}).then(res=>{
-          this.setData({"data.user.shoucang":true})
-        })
-      }else{
-      
-      }
+    AUTH.checkToken().then(isLogin=>{
+     if(isLogin){
+      let action_type=this.data.user.shoucang?40:20
+      api.postRequest('/api/frontend/wx/action/',{"id":this.data.mid,"action_type":action_type}).then(res=>{
+        this.setData({"user.shoucang":action_type==40?false:true})
+      })
+     }else{
+       wx.switchTab({
+         url: '/pages/my/my',
+       })
 
-
-    })
+     }
+   })
   },
 // 分享
   onShareAppMessage: function (res) {
@@ -101,45 +103,16 @@ Page({
   // login fun
   bindGetUserInfo(e){
     // 授权回调
-    
     if(e.detail.userInfo){
+      console.log("同意授权")
       // 用户同意授权  直接调用服务器登录
       AUTH.login(isLogin=>{
         this.setData({"showPopup":false})
       })
     }else{
       // 用户拒绝授权
+      console.log("拒絕授權")
       this.setData({"showPopup":false})
     }
-  },
-  needLogin(){
-    return new Promise((resolve,rejects)=>{
-      let openid=wx.getStorageSync('openid')
-      let token=wx.getStorageSync('token')
-      let userinfo=wx.getStorageSync('userinfo')
-      if(openid  && token && token.length>1 && userinfo){
-        return resolve(true)
-      }else{
-          wx.getSetting({
-            complete: (res) => {
-              // settings results
-              if(res.authSetting["scope.userInfo"]){
-                // 用户已经授权了 配置
-                 AUTH.login().then(e=>{
-                   console.log(e)
-                  return resolve(true)
-                 })
-              }else{
-                // 弹出授权界面
-                console.log("弹出授权界面")
-                this.setData({"showPopup":true})
-                return resolve(false)
-              }
-            },
-          })
-        }
-    })
   }
-
-  //
 })

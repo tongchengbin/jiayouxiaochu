@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    hasMore:1,
     params: { "page": 1 ,'keyword':null,'food':""},
     listdata:[]
 
@@ -17,7 +18,6 @@ Page({
   onLoad: function (options) {
     // 请求我的搜藏
     this.getList()
-    console.log("load")
   },
 
   /**
@@ -59,7 +59,22 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    if(!this.data.hasMore){
+      console.log("到底了")
+      return false
+    }
+    this.setData({"params.page":this.data.params.page+1})
+    this.getList()
 
+  },
+  onPullDownRefresh() {
+    // 上拉刷新
+    api.getRequest('/api/frontend/wx/favorites/', {"page":this.data.params.page}).then(res => {
+      this.setData({"hasMore":res.data.data.next?true:false})
+      this.setData({ "listdata": res.data.data.results })
+      wx.stopPullDownRefresh()
+      console.log(this.data.hasMore)
+    })
   },
 
   /**
@@ -72,15 +87,16 @@ Page({
     if (type === 'refresh'){
       this.setData({"params.page":1})
     }
-    api.wxRequest('/api/frontend/wx/favorites/', 'GET', this.data.params).then(res => {
+    api.getRequest('/api/frontend/wx/favorites/', {"page":this.data.params.page}).then(res => {
       if (type ==='refresh'){
-        this.setData({"listInfo.maxPage":res.data.num_pages})
+        this.setData({"hasMore":res.data.data.next?true:false})
         this.setData({ "listdata": res.data.data.results })
+        
       }else{
-        this.setData({"listInfo.maxPage":res.data.num_pages})
+        this.setData({"hasMore":res.data.data.next?true:false})
         this.setData({ "listdata": this.data.listdata.concat(res.data.data.results) })
       }
-      console.log(this.data.listdata)
+      console.log(this.data.hasMore)
     })
   }
 })

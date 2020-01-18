@@ -1,9 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/favorites/favorites",
-    
     "pages/my/my",
+    "pages/favorites/favorites",
     "pages/menuDetail/menuDetail",
     "pages/catelist/catelist",
     "pages/menuList/menuList",
@@ -11,6 +10,7 @@
     "pages/logs/logs",
     "pages/comment/comment",
     "components/tips/tips"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

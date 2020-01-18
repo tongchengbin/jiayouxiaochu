@@ -66,3 +66,8 @@
 .item-dt{
   float: right;
 }
+
+.foot-txt{
+  text-align:center;
+  margin: auto;
+}

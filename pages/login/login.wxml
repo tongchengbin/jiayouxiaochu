@@ -1,0 +1,13 @@
+<view class="page-container">
+  <view class="page-top"></view>
+  <view class="lf">
+    <!-- 登录表单 -->
+    <view class="in-txt">家有小厨</view>
+    <view class="email">邮箱:<input></input></view>
+    <view class="aline"></view>
+    <view class="pwd">密码:<input></input></view>
+    <view class="aline tb-10"></view>
+    <button class="btn-in">登录</button>
+    <button bindtap="login" class="btn-in">微信授权登录</button>
+  </view>
+</view>

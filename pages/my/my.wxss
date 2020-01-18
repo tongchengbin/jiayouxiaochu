@@ -48,3 +48,18 @@ page{
   background-color: #fff;
   
 }
+
+.login-btn{
+  margin: 30rpx auto 0 auto;
+  text-align: center;
+}
+
+.login-text{
+  display: inline-block;
+  padding: 5rpx 60rpx;
+  text-align: center;
+  color:#ff6161 ;
+  border-radius: 10rpx;
+  font-weight: bold;
+  background-color:#fff;
+}

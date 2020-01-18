@@ -7,6 +7,7 @@
   <!-- 主体数据 -->
   <view class="box">
     <view class="item" wx:for="{{listdata}}" wx:key="item"  data-mid="{{item.id}}">
+    <navigator url="/pages/menuDetail/menuDetail?mid={{item.id}}">
       <view class="item-img">
         <image src="{{item.display_img}}?x-oss-process=image/resize,m_fill,w_290,h_200/quality,q_50/format,jpg" mode="scaleToFill"></image>
       </view>
@@ -20,7 +21,10 @@
         </view>
         
       </view>
+      </navigator>
     </view>
   </view>
+  <view wx:if="{{!hasMore}}" class="foot-txt">到底了</view>
 </view>
+
 

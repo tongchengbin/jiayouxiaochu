@@ -1,24 +1,19 @@
 <import src="../../templates/login.wxml" />
+<tips id='tips'></tips>
+
 <view class="container">
-  <block wx:if="{{islogin}}">
   <view class="userinfo">
     <!-- 头像 -->
-    <view class="avatar"><image src="{{userinfo.avatar}}"></image></view>
+    <view  class="avatar">
+    <image src="{{islogin ? userinfo.avatar:'/images/icon/b2.png'}}"></image></view>
     <!-- 昵称 -->
-    <view class="nickname">{{userinfo.username}}</view>  
+    <view wx:if="{{islogin}}" class="nickname">{{userinfo.username}}</view>  
+    <view wx:else class="login-btn"><view class="login-text" bindtap="login">登 录</view></view>  
   </view>
   <view class="cards">
-    <view class="card"><button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">我的收藏夹</button></view>
+    <view class="card"><button bindtap="myCollect" lang="zh_CN">我的收藏夹</button></view>
     <view class="card"><button open-type="share" lang="zh_CN" bindgetuserinfo="onGotUserInfo">分享给好友</button></view>
   </view>
-  </block>
-  <block wx:else>
-    <view class="auth-login">
-      <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
-      授权登录
-      </button>
-    </view>
-  </block>
 </view>
 
 
