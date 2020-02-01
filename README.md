@@ -9,7 +9,7 @@ https://api.tongchengbin.com
 ##### https://github.com/tongchengbin/Vadmin
 
 ### 扫码体验
-
+<img src="/docs/images/scan.jpg" width="320px" style="display: inline">
 
 ### 项目截图
 <img src="" width="320px" style="display:inline;">
