@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="620f490e-791c-43aa-8728-8f19571ce20e" name="Default" comment="上传图片">
+    <list default="true" id="620f490e-791c-43aa-8728-8f19571ce20e" name="Default" comment="update docs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/comment/comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/comment/comment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +49,8 @@
       <option name="presentableId" value="Default" />
       <updated>1579248306157</updated>
       <workItem from="1580546181358" duration="305000" />
-      <workItem from="1580546841061" duration="2791000" />
+      <workItem from="1580546841061" duration="4728000" />
+      <workItem from="1580564767961" duration="218000" />
     </task>
     <task id="LOCAL-00001" summary="重构多个页面样式">
       <created>1580546929914</created>
@@ -64,7 +66,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580547876711</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="update docs">
+      <created>1580549657423</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1580549657423</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -73,7 +82,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="重构多个页面样式" />
     <MESSAGE value="上传图片" />
-    <option name="LAST_COMMIT_MESSAGE" value="上传图片" />
+    <MESSAGE value="update docs" />
+    <option name="LAST_COMMIT_MESSAGE" value="update docs" />
   </component>
   <component name="WindowStateProjectService">
     <state x="27" y="188" key="#Custom_Plugin_Repositories" timestamp="1580547530801">
@@ -88,10 +98,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1580548818126" />
-    <state x="406" y="6" key="CommitChangelistDialog2" timestamp="1580547874535">
+    <state x="406" y="6" key="CommitChangelistDialog2" timestamp="1580564974561">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="406" y="6" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580547874535" />
+    <state x="406" y="6" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580564974561" />
     <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1580546477638">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -104,9 +114,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="270" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1580548940990" />
-    <state x="361" y="134" key="Vcs.Push.Dialog.v2" timestamp="1580548945759">
+    <state x="361" y="134" key="Vcs.Push.Dialog.v2" timestamp="1580549659062">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="134" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580548945759" />
+    <state x="361" y="134" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580549659062" />
   </component>
 </project>

@@ -108,24 +108,6 @@ Page({
     })
 
   },
-  submitComment(){
-    let that = this;
-    console.log(that)
-    AUTH.checkToken().then(isLogin=>{
-      that.setData({"isLogin":isLogin})
-      let data=this.data.comment
-      api.postRequest('/api/frontend/wx/comment/',data).then(res=>{
-        wx.showToast({
-          title:'成功',
-          icon:'success',
-          duration: 2000
-         })
-         this.setData({"comment.content":""})
-         this.getComment()
-      })
-
-    }) 
-  },
   onReachBottom() {
     // 加载更多
     if(this.data.more){
@@ -221,9 +203,17 @@ Page({
     var content=this.data.content;
     var reply=item?item.id:null
     api.postRequest('/api/frontend/wx/comment/', { "content": content, "reply": reply, "id": this.data.comment.id}).then(res=>{
-      wx.showToast({
-        title: '提交成功'
-      })
+      if(res.data.status==0){
+        wx.showToast({
+          title: '提交成功'
+        })
+      }else{
+        wx.showToast({
+          title: res.data.msg,
+          icon:'none'
+        })
+      }
+      
     })
 
   }
