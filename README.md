@@ -16,7 +16,7 @@ https://api.tongchengbin.com
 <img src="/docs/images/detail.jpg" width="320px" style="display:inline;">
 <img src="/docs/images/comment.jpg" width="320px" style="display:inline;">
 <img src="/docs/images/feedback.jpg" width="320px" style="display:inline;">
-<img src="/docs/images/feedback.jpg" width="320px" style="display:inline;">
+<img src="/docs/images/cate.jpg" width="320px" style="display:inline;">
 <img src="/docs/images/login_dialog.jpg" width="320px" style="display:inline;">
 <img src="/docs/images/menulist.jpg" width="320px" style="display:inline;">
 <img src="/docs/images/my_login.jpg" width="320px" style="display:inline;">
