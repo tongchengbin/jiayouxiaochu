@@ -3,15 +3,18 @@
 
 <!-- tips -->
 <tips id='tips'></tips>
+<import src="../../templates/loading.wxml" />
 <!-- tips-->
 <view class="header-search">
-  <view class="inner-search">
-    <icon class="searchcion" size='20' type='search'></icon>
-    <input class="search-input" bindinput="updateValue" bindconfirm="getList" value="{{params.keyword}}"  placeholder="搜菜谱" placeholder-class="placeholder-center" confirm-type="search"
-      bindfocus="startInput" bindblur="outInput"></input>
-    <view class="search-text"><text bindtap="searchSubmit"  data-type='refresh'>搜索</text></view>
+    <view class="inner-search">
+      <icon class="searchcion" size='18' type='search'></icon>
+      <input class="search-input" 
+      onfocus="onfocus"
+      bindinput="updateValue" 
+      bindconfirm="getList" value="{{params.keyword}}"  placeholder="搜菜谱" placeholder-class="placeholder-center" confirm-type="search"></input>
+      <view class="search-text"><navigator hover-class="hbg" url="/pages/menuList/menuList?keyword={{params.keyword}}">搜索</navigator></view>
+    </view>
   </view>
-</view>
 <view class="container">
   <!-- 主体数据 -->
   <view class="box">
@@ -31,24 +34,23 @@
       </view>
       </navigator>
     </view>
-    
+    <view style='display:{{loading?"block":"none"}}'>
+      <template is="tempLoading" />
+    </view>
   </view>
-  <view  hidden="{{ listdata.length==0 || listdta.length<listInfo.maxPage }}" class="list-end">— 家有小厨 —</view>
-    <view class="nodata" hidden="{{listdata.length>0}}">
-      <image src="/images/icon/nodata.png"></image>
-    </view>
-
-  <view class="search-list" hidden="{{!showHistoryList}}">
-    <view class="history-title">历史搜索</view>
-    <view class="history-items">
-      <view class="key-name" bindtap="insertKey" data-name="测试">测试</view>
-    </view>
-    <view class="history-title">热门搜索</view>
-    <view>
-      <view class="key-name" bindtap="insertKey" data-name="{{item}}" wx:for="{{hotkey}}" wx:key="item">{{item}}</view>
-    </view>
+  <view  wx:if="{{ listdata.length==count && listdata.length>0 }}" class="list-end">— 家有小厨 —</view>
+  <view class="nodata" wx:if="{{count==0}}">
+    <image src="/images/icon/nodata.png"></image>
   </view>
 </view>
+
+
+  <view class="search-list" hidden="{{!showHistoryList}}">
+    <view hover-class="hbg" class="history-title">热门搜索</view>
+    <view>
+      <view class="key-name" hover-class="hbg" bindtap="insertKey" data-name="{{item}}" wx:for="{{hotkey}}" wx:key="item">{{item}}</view>
+    </view>
+  </view>
 
 
 

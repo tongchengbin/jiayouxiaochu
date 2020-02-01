@@ -2,20 +2,16 @@
   <!-- search -->
   <view class="header-search">
     <view class="inner-search">
-      <icon class="searchcion" size='20' type='search'></icon>
+      <icon class="searchcion" size='18' type='search'></icon>
       <input class="search-input" bindinput="updateValue" bindconfirm="getList" value="{{params.keyword}}"  placeholder="搜菜谱" placeholder-class="placeholder-center" confirm-type="search"></input>
-      <view class="search-text"><navigator url="/pages/menuList/menuList?keyword={{params.keyword}}">搜索</navigator></view>
+      <view  hover-class="hbg" class="search-text"><navigator  hover-class="hbg" url="/pages/menuList/menuList?keyword={{params.keyword}}">搜索</navigator></view>
     </view>
   </view>
   
 <view class="search-list" hidden="{{!showHistoryList}}">
-    <view class="history-title">历史搜索</view>
-    <view class="history-items">
-      <view class="key-name"  wx:for="{{hisKey}}" wx:key="item"><navigator url="/pages/menuList/menuList?keyword={{item}}">{{item}}</navigator></view>
-    </view>
     <view class="history-title">热门搜索</view>
     <view>
-      <view class="key-name"  wx:for="{{hotkey}}" wx:key="item"><navigator url="/pages/menuList/menuList?keyword={{item}}">{{item}}</navigator></view>
+      <view class="key-name"  wx:for="{{hotkey}}" wx:key="item"><navigator hover-class="hbg"  url="/pages/menuList/menuList?keyword={{item}}">{{item}}</navigator></view>
     </view>
   </view>
 </view>

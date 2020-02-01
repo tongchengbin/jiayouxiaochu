@@ -4,7 +4,7 @@
   z-index: 9999;
   top: 0;
   background-color:#ff6161;
-  height: 100rpx;
+  height: 90rpx;
   width: 100% 
 }
 .icon-search{
@@ -13,24 +13,30 @@
   margin-right: 15rpx;
 }
 .inner-search{
-  position: absolute;
-  top: 20rpx;
-  bottom: 20rpx;
-  left: 90rpx;
-  right: 90rpx;
+  display: flex;
+  align-items: center;
+  width: 550rpx;
+  margin: auto;
+  height: 60rpx;
+  justify-content: center;
   background-color: #fff;
   border-radius: 10rpx;
   text-align: center;
   font-size: 28rpx;
   color: #A8A8A8;
-  line-height: 60rpx;
+  
 }
 .inner-search icon{
+  height: 28rpx;
+  line-height: 1;
+}
+.inner-search text{
   font-size: 28rpx;
+  line-height: 1;
 }
 /* lb */
 .body{
-  margin-top: 100rpx;
+  margin-top: 90rpx;
   height: 300rpx;
   width: 100%
 }
@@ -41,11 +47,14 @@
   padding: 20rpx 0rpx;
 }
 .container .title{
+  margin: auto;
+  text-align: center;
   color: #6b6a6a;
   font-weight: bold;
   font-size: 28rpx;
 }
 .box{
+  margin: auto;
   width: 670rpx;
   padding:20rpx 0;
   display: flex;
@@ -60,7 +69,8 @@
 }
 .item  text{
     color: #333;
-    font-weight: 700;
+    font-size: 26rx;
+    font-weight: 650;
     display: -webkit-box;
     overflow: hidden;
     text-overflow: ellipsis;

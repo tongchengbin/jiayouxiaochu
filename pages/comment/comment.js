@@ -8,13 +8,22 @@ Page({
    * 页面的初始数据
    */
   data: {
+    "cnt":0,// 总评论数
     "comment":{
       "id":null,
       "content":""
     },
+    "moreLoading":false,
+    // 当前评论item的路径
+    "currentPath":null,
+    // 当前评论的item
+    "currentItem":null,
+    "content":"",
+    "showKeyboard":false,// 是否定位到输入框
     "currentPage":1,
-    "more":false,
-    comList:[]
+    "more":true,
+    "comList":[],
+    "placeholder":"请留下您的评论"
 
   },
 
@@ -27,8 +36,6 @@ Page({
       id=10
     }
     this.setData({ "comment.id": id})
-    this.getComment()
-
   },
 
   /**
@@ -42,6 +49,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getComment()
 
   },
 
@@ -83,13 +91,14 @@ Page({
     this.setData({"comment.content": e.detail.value});
   },
   getComment:function(isMore){
+    this.setData({ "moreLoading": true })
     api.getRequest('/api/frontend/wx/comment/',{"id":this.data.comment.id,"page":this.data.currentPage}).then(res=>{
       if(isMore){
-        this.setData({"comList":this.data.comList.concat(res.data.data.results)})
+        this.setData({ "comList": this.data.comList.concat(res.data.data.results), "cnt": res.data.data.count})
       }else{
-        this.setData({"comList":res.data.data.results})
+        this.setData({ "comList": res.data.data.results, "cnt": res.data.data.count})
       }
-      
+      this.setData({ "moreLoading": false })
       if(res.data.data.next){
         this.setData({"more":true})
       }else{
@@ -102,7 +111,7 @@ Page({
   submitComment(){
     let that = this;
     console.log(that)
-    AUTH.checkAuth().then(isLogin=>{
+    AUTH.checkToken().then(isLogin=>{
       that.setData({"isLogin":isLogin})
       let data=this.data.comment
       api.postRequest('/api/frontend/wx/comment/',data).then(res=>{
@@ -128,5 +137,95 @@ Page({
         icon:"none"
       })
     }
+  },
+  // 点击评论
+  inReply(e){
+    var self = this;
+    AUTH.checkToken(self).then(isLogin => {
+      if (!isLogin) { this.setData({ "isLoginPopup": true }); return }
+    })
+    var index = e.currentTarget.dataset.index;
+    var cIndex = e.currentTarget.dataset.cindex
+    let item;
+    // 记录下item 的路径
+    let path = ""
+    if(index== undefined){
+      path =''
+      item=null;
+      this.setData({ "placeholder": '请留下您的评论!' })
+    }
+    else if (cIndex == undefined) {
+      path = `comList[${index}]`
+      item = this.data.comList[index]
+      this.setData({ "placeholder": `回复${item.username}:` })
+    } else {
+      path = `comList[${index}].chils[${cIndex}]`
+      item = this.data.comList[index].chils[cIndex]
+      this.setData({ "placeholder": `回复${item.username}:` })
+    }
+    this.setData({"showKeyboard":true,"currentPath":path,"currentItem":item})
+  },
+  exitInput: function () {
+    console.log("市区焦点")
+    this.setData({"showKeyboard":false})
+  },
+  // 评论点赞
+  commentLike(e) {
+    console.log(e)
+    var self = this;
+    AUTH.checkToken(self).then(isLogin => {
+      if (!isLogin) { this.setData({ "isLoginPopup": true }); return }
+    })
+    var index = e.currentTarget.dataset.index;
+    var cIndex = e.currentTarget.dataset.cindex
+    let item;
+    // 记录下item 的路径
+    let path = ""
+    if (cIndex == undefined) {
+      path = `comList[${index}]`
+      item = this.data.comList[index]
+    } else {
+      path = `comList[${index}].chils[${cIndex}]`
+      item = this.data.comList[index].chils[cIndex]
+    }
+    var data = {
+      "isLike": !item.is_like,
+      "commentId": item.id
+    }
+    api.postRequest("/api/frontend/wx/comment_like/", data).then(res => {
+      item.is_like = !item.is_like
+      item.like = item.is_like ? item.like + 1 : item.like - 1
+      console.log(path, item)
+      console.log(path)
+      var obj = {}
+      obj[path] = item
+      this.setData(obj)
+      // this.setData({"comment.dataList[0]":item})
+    })
+
+  },
+  // 评论输入值监听
+  commentValue(e){
+    console.log(e)
+    var content=e.detail.value
+    this.setData({"content":content})
+  },
+  // 提交评论
+  submitComment(){
+    var self = this;
+    AUTH.checkToken(self).then(isLogin => {
+      if (!isLogin) { this.setData({ "isLoginPopup": true }); return }
+    })
+    let path = this.data.currentPath;
+    let item = this.data.currentItem;
+    var content=this.data.content;
+    var reply=item?item.id:null
+    api.postRequest('/api/frontend/wx/comment/', { "content": content, "reply": reply, "id": this.data.comment.id}).then(res=>{
+      wx.showToast({
+        title: '提交成功'
+      })
+    })
+
   }
+ 
 })

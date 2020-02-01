@@ -3,7 +3,7 @@
 
 <!-- tips -->
 <tips id='tips'></tips>
-<import src="../../templates/loading.wxml" />
+<import src="../../../templates/loading.wxml" />
 <!-- tips-->
 <view class="container">
   <!-- 主体数据 -->

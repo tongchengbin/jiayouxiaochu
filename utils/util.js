@@ -15,8 +15,14 @@ const formatNumber = n => {
 }
 async function showTopTip(msg,type){
   let pages=getCurrentPages()
-  console.log(pages[pages.length-1])
-  pages[pages.length-1].selectComponent("#tips").showTopTip(msg,type)
+  if (pages && pages[pages.length - 1]){
+    pages[pages.length - 1].selectComponent("#tips").showTopTip(msg, type)
+  }else{
+    wx.showToast({
+      title: msg,
+    })
+  }
+  
   
 }
 module.exports = {

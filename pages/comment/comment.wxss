@@ -1,77 +1,178 @@
+.top-info{
+  margin: 30rpx 20rpx;
+  color: #989898;
+}
 
 
-.comment .content{
-  position: fixed;
-  bottom: 0;
-  height: 100rpx;
-  background-color: #e64340;
-  padding: 5rpx 25rpx;
+/* 评论 */
+.comment-container{
+  margin: 5rpx 20rpx 100rpx 20rpx;
+}
+.comment{
   display: flex;
-  justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 10rpx;
+  /* 边框 */
+  border-bottom-color: #F0F0F0;
+  border-bottom-width: 1rpx;
+  border-bottom-style: solid;
+  padding-bottom: 20rpx;
 
 }
-.comment .content .content-in{
-  border-color: #e64340;
-  border-style: initial;
-  border-width: 2rpx;
-  border-radius: 10rpx;
-  padding-left: 5rpx;
-  width: 600rpx;
-  height: 60rpx;
-  background-color: #FFF;
+.comment .avatar{
+  margin-top: 20rpx;
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 70rpx;
+  display: block;
+  overflow: hidden;
 }
-.comment .content .submit{
-  width: 147rpx;
-  text-align: left;
-  color: #FFF;
-  margin-left: 15rpx;
-}
-
-
-/* 评论 item */
-.com-list{
-  margin-bottom: 130rpx;
-}
-
-.com-item{
-  margin:40rpx 20rpx;
-}
-
-
-
-.com-item .avatar image{
+.comment .avatar image{
   width: 100%;
   height: 100%;
 }
-.com-item .item-header{
-  line-height: 60rpx;
-  height: 60rpx;
-  /* display: flex; */
-  /* justify-content: left; */
+.comment .comment-right {
+  width: 100%;
+  margin-left: 20rpx;
+}
+.comment .comment-right  .comment-nickname{
+  font-weight: 600;
+  color: #595959;
+  margin: 10rpx 0;
+}
+.comment .comment-right .comment-time{
+  margin-top: 30rpx;
+  font-size: 28rpx;
+  color: #444;
+}
+.comment .comment-content{
+  color: #292929;
+  font-size: 32rpx;
+  line-height: 1.7;
+}
+.comment-but{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.comment-but .comment-like{
+  margin-top: 8rpx;
+  margin-bottom: 18rpx;
+  background: none;
+  border: none;
+  padding: 0; 
+  line-height: 1;
+}
+.comment-but button::after{
+  border: none;
+  padding: 0;
+  
+}
+.comment-but .comment-like image{
+  height: 28rpx;
+  width: 28rpx;
+  overflow: hidden;
+}
+.comment-but .comment-like text{
+  color: #9a9a9a;
+  font-size: 24rpx;
+}
+.comment .add-time{
+  font-size: 24rpx;
+  color: #9a9a9a;
+}
+
+.chil-avatar{
+  margin-top: 10rpx;
+}
+.chil-avatar image{
+  height: 56rpx;
+  width: 56rpx;
+  border-radius: 56rpx;
+  overflow: hidden;
+}
+.chil-item{
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  border-top-color: #F0F0F0;
+  border-top-width: 1rpx;
+  border-top-style: solid;
+  padding-top: 20rpx;
+}
+.comment-username{
+  font-weight: 600rpx;
+  color: #595959;
+}
+.reply-text{
+  color: #8590a6;
+}
+
+
+/* 评论 */
+.container-reply{
+
+  background-color: #FFF;
+  z-index: 10;
+  position: fixed;
+  height: 100rpx;
+  bottom: 0rpx;
+  width: 100%;
+  border-top: 1px solid #F0F0F0;
+}
+.container-reply .reply-box{
+  margin: 23rpx;
+  height: 54rpx;
+  display: flex;
+  align-items: center;
 
 }
-.com-item .avatar{
-  float: left;
-  overflow: hidden;
-  height: 60rpx;
-  line-height: 60rpx;
-  width: 60rpx;
-  border-radius: 2rpx;
+.reply-box text{
+  font-size: 30rpx;
+  margin-left: 10rpx;
+  color: rgb(222, 222, 222)
+
 }
-.com-item .username{
-  float: left;
-  margin: 5rpx 10rpx;
-  overflow: hidden;
-  height: 60rpx;
-  line-height: 60rpx;
-  text-align: center;
-  font-weight: 2rpx;
+.reply-box image{
+  width: 46rpx;
+  height: 46rpx;
 }
-.item-header .addtime{
-  float: right;
+
+
+.dialog-input{
+  padding-top: 5rpx;
+  padding-bottom: 5rpx;
+  padding-left: 15rpx;
+  border-radius: 10rpx;
+  color: #353535;
+  width: 550rpx;
+  border: 1px solid rgb(222, 222, 222);
 }
-.item-content{
-  margin-top: 10rpx;
-  margin-left: 60rpx;
+.dialog-btn{
+  font-size: 28rpx;
+  line-height: 1.4;
+  padding: 10rpx;
+  background-color: #e64340;
+  color: #FFF;
+  width: 130rpx;
+}
+button:after{
+  border: none;
+}
+.primary-color{
+  color: #e64340!important;
+}
+/* 输入时的遮罩层 */
+.mark{
+  position: fixed;
+  z-index: 11;
+  top:0;
+  bottom: 0;
+  width: 100%;
+  background: #DEDEDE;
+  opacity: 0.2;
 }

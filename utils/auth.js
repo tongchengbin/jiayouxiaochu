@@ -1,6 +1,7 @@
 import api from 'request'
 import {showTopTip} from 'util'
-function checkSession(){
+const AUTH={}
+AUTH.checkSession=function checkSession(){
   // 检测session
   return new Promise((resolve, reject) => {
     wx.checkSession({
@@ -13,26 +14,80 @@ function checkSession(){
     })
   })
 }
-function checkToken(){
+AUTH.checkToken=function checkToken(appPage){
   return new Promise((resolve,reject)=>{
     let token=wx.getStorageSync('token')
     let userinfo=wx.getStorageSync('userinfo')
     if(token && userinfo){
         resolve(true)
     }else{
-      loginOut()
+      if (appPage) { appPage.setData({"isLoginPopup":true})}
       resolve(false)
     }
   })
 }
 
-function loginOut(){
+AUTH.loginOut=function loginOut(){
   // 登出  清空token openid
   wx.removeStorageSync('token')
   wx.removeStorageSync('openid')
   wx.removeStorageSync('userinfo')
 }
+AUTH.checkAgreeGetUser = function (e, app, appPage, reload) {
+  // 通过这个按钮进来 如果用户已经授权  是不会再弹出授权框的  这个操作微信帮我们做 同时可以直接拿到用户信息 
+  // 如果静默登录需要判断用户是否授权  然后再弹出授权 再获取用户信息
+  if (e.detail.errMsg =='getUserInfo:ok') {
+    // 同意授权
+    console.log("授权回调",e)
+    var userinfo={
+      "avatar":e.detail.userInfo.avatarUrl,
+      "gender":e.detail.userInfo.gender,
+      "username":e.detail.userInfo.nickName,
+      "encryptedData": e.detail.encryptedData,
+      "iv":e.detail.iv
+    }
+    // 获取用户信息成功
+    // 开始服务器登陆 
+    AUTH.agreeGetUser(userinfo).then(res => {
+      appPage.setData({ isLoginPopup: false });
+      if (reload){
+        appPage.onShow()
+      }
+    })
+  }
+  else {
+    // 拒绝授权
+    wx.showToast({title: '登录失败',icon:'none',mask: false,duration: 1000});
+    appPage.setData({ isLoginPopup: false });
 
+  }
+}
+
+AUTH.agreeGetUser = function ( userinfo) {
+  // 弹出授权  授权按钮回调
+  return new Promise(function (resolve, reject) {
+     wx.login({
+      success: function (res) {
+        // 进行服务器登陆 正常 的服务器登录应该是用encryptedaa到后台进行解密的  
+        // 不过直接把需要的数据传过去也没有问题
+        userinfo.code=res.code
+        api.postRequest('/api/frontend/wx/updateUser/', userinfo).then(res => {
+          var token=res.data.token;
+          var openid = res.data.openid
+          wx.setStorageSync('userinfo', userinfo)
+          wx.setStorageSync('token', token)
+          wx.setStorageSync('openid', openid)
+          return resolve(1)
+        },
+        err=>{
+          console.log(err)
+          return resolve(2)
+        }
+        )
+      }
+    })
+  })
+}
 
 async function checkSetting(){
   // 检测授权配置
@@ -128,7 +183,6 @@ async function checkAuth(isNeed){
   */
   const Session=await checkSession()
   if(!Session){
-    await loginOut()
   }
   // 2
   const settings=await checkSetting()
@@ -187,9 +241,4 @@ async function login(){
 }
 
 
-module.exports = {
-  login:login,
-  checkAuth:checkAuth,
-  checkToken:checkToken,
-  loginOut: loginOut,
-}
+module.exports = AUTH

@@ -1,27 +1,77 @@
 
 <!-- tips -->
 <tips id='tips'></tips>
+<import src="../../templates/loading.wxml" />
 <!-- tips-->
+<view class="top-info">评论({{cnt}})</view>
+  <!-- 评论列表 -->
+<view class="comment-container">
+    <!-- 列表 -->
+    <block wx:key="id" wx:for="{{comList}}" wx:for-index="index">
+      <view class="comment" catchtap="inReply" data-id="{{item.id}}" data-index="{{index}}">
+        <view>
+            <view class="avatar"><image src="{{item.avatar}}"></image></view>
+        </view>
+        <view class="comment-right">
+          <view class="comment-nickname">{{item.username}}</view>
+          <view class="comment-content">{{item.content}}</view>
+          <view class="comment-but">
+            <view class="add-time">{{item.add_time}}</view>
+            <view class="item-a">
+              <button class="comment-like" catchtap="commentLike" data-id="{{item.id}}" data-index="{{index}}">
+                <image  src="/images/icon/dianzan{{item.is_like?'_':''}}.png"></image>
+                <text wx:if="{{item.like>0}}">{{item.like}}</text>
+              </button>
+            </view>  
+          </view>
+          <view class="comment-chil">
+          <!-- 子评论 -->
+            <view wx:for="{{item.chils}}" wx:key="i" wx:for-item="i" class="chil-item" wx:for-index="cindex"
+            catchtap="inReply" data-id="{{item.id}}" data-index="{{index}}"  data-cindex="{{cindex}}"
+            >
+            <view class="chil-avatar">
+              <image src="{{i.avatar}}"></image>
+            </view>
+            <view class="comment-right">
+              <view class="comment-nickname">{{i.username}}</view>
+              <view class="comment-content">{{i.content}}</view>
+              <view class="comment-but">
+              <view class="add-time">{{i.add_time}}</view>
+              <view class="item-a">
+              <button class="comment-like" catchtap="commentLike" data-index="{{index}}" data-cindex="{{cindex}}">
+                <image  src="/images/icon/dianzan{{i.is_like?'_':''}}.png"></image>
+                <text wx:if="{{i.like>0}}">{{i.like}}</text>
+              </button>
+            </view>  
+            </view>
+          </view>
+            </view>
+          </view>
+        </view>
 
-<view>
-  <view class="com-list" >
-    <view class="com-item" wx:for="{{comList}}" wx:key='item'>
-      <view class="item-header">
-        <view class="avatar"><image src="{{item.avatar}}"></image></view>
-        <view class="username">{{item.username}}</view>
-        <view class="addtime">{{item.add_time}}</view>
       </view>
-      <view class="item-content">
-        {{item.content}}
-      </view>  
-
+    </block>
+    <view>
+      <view style='display:{{moreLoading?"block":"none"}}'>
+        <template is="tempLoading" />
+      </view>
+      <view style="display:{{more?'none':'block'}}">
+        <view class="no-more">- 无更多评论 -</view>
+      </view>
     </view>
+</view>
 
+<!-- 回复框 -->
+<view class="container-reply" style='display:{{showKeyboard?"none":"block"}};'>
+  <view class="reply-box" bindtap="inReply">
+    <image src="/images/icon/pinglun.png"></image>
+    <text>留下您的评论吧！</text>
   </view>
-  <view class="comment">
-    <view class="content">
-      <input class="content-in" value="{{comment.content}}" bindinput="comtentInput" cursor-spacing="10"></input>
-      <text class="submit" bindtap="submitComment">提交</text>
-    </view>
+</view>
+<view wx:if="{{showKeyboard}}" class="mark"></view>
+<view class="container-reply" style='display:{{showKeyboard?"block":"none"}};z-index:20;'>
+  <view class="reply-box">
+    <input bindinput="commentValue" class="dialog-input" focus="{{showKeyboard}}" bindblur="exitInput" placeholder-style="color: rgb(222, 222, 222);padding-left: 15rpx;" placeholder="{{placeholder}}" cursor-spacing="10"></input>
+    <button  catchtap="submitComment" class="dialog-btn">发送</button>
   </view>
 </view>

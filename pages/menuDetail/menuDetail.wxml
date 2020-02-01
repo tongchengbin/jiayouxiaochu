@@ -1,6 +1,7 @@
 <!--pages/menuDetail/menuDetail.wxml-->
-<import src="../../templates/login.wxml" />
-
+<import src="../../templates/login-popup.wxml"/>
+<import src="../../templates/loading.wxml" />
+<template is="login-popup" data="{{show: isLoginPopup, userInfo: userInfo}}"></template>
 <!-- tips -->
 <tips id='tips'></tips>
 <!-- tips-->
@@ -29,7 +30,7 @@
   <view class="divLine"></view>
   <view  class="food clearfix">
     <view class="title">用料</view>
-    <view class="food-item" wx:for="{{data.foodlist}}" wx:key="id">
+    <view class="food-item" wx:for="{{data.foodlist}}" wx:key="item">
       <view class="food-info">
         <text class="left">{{item.name}}</text>
         <text class="right">{{item.unit}}</text>
@@ -41,18 +42,97 @@
     <view class="step-item clearfix" wx:for="{{data.steps}}" wx:key="item">
       <view class="step-title">步骤{{index+1}}</view>
       <image src="{{item.img}}" class="step-image" mode="aspectFill" />
-      <view class="action-title">{{item.title}}</view>
+      <view class="step-content`">{{item.title}}</view>
     </view>
   </view>
-</view>
+  <!-- 评论列表 -->
+  <view style="display:{{showComment}}" class="comment-container">
+    <!-- 小标题 -->
+    <view class="subTitle" id="relatedTitle">
+      <view>评论交流</view>
+      <view class="comment-num">{{data.comment_cnt}}</view>
+    </view>
+    <view class="subTitle_line subTitle_line_comment"></view>
 
+    <!-- 列表 -->
+    <block wx:key="id" wx:for="{{comment.dataList}}" wx:for-index="index">
+      <view class="comment">
+        <view>
+            <view class="avatar"><image src="{{item.avatar}}"></image></view>
+        </view>
+        <view class="comment-right">
+          <view class="comment-nickname">{{item.username}}</view>
+          <view class="comment-content">{{item.content}}</view>
+          <view class="comment-but">
+            <view class="add-time">{{item.add_time}}</view>
+            <view class="item-a">
+              <button class="comment-like" catchtap="commentLike" data-id="{{item.id}}" data-index="{{index}}">
+                <image  src="/images/icon/dianzan{{item.is_like?'_':''}}.png"></image>
+                <text wx:if="{{item.like>0}}">{{item.like}}</text>
+              </button>
+            </view>  
+          </view>
+          <view class="comment-chil">
+          <!-- 子评论 -->
+            <view wx:for="{{item.chils}}" wx:key="i" wx:for-item="i" class="chil-item" wx:for-index="cindex">
+            <view class="chil-avatar">
+              <image src="{{i.avatar}}"></image>
+            </view>
+            <view class="comment-right">
+              <view class="comment-nickname">{{i.username}}</view>
+              <view class="comment-content">{{i.content}}</view>
+              <view class="comment-but">
+              <view class="add-time">{{i.add_time}}</view>
+              <view class="item-a">
+              <button class="comment-like" catchtap="commentLike" data-index="{{index}}" data-cindex="{{cindex}}">
+                <image  src="/images/icon/dianzan{{i.is_like?'_':''}}.png"></image>
+                <text wx:if="{{i.like>0}}">{{i.like}}</text>
+              </button>
+            </view>  
+            </view>
+          </view>
+            </view>
+          </view>
+        </view>
 
+      </view>
+    </block>
+    <view style='display:{{isLoading?"block":"none"}}'>
+        <template is="tempLoading" />
+      </view>
+      <view wx:if="{{commentCount>10}}">
+        <view bindtap="comment" class="all-comment">- 查看全部{{commentCount}}评论 -</view>
+      </view>
+  </view>
 <!-- 评论层结束 -->
-<view class="foot">
-  <view bindtap="dianZhan" class="foot-btn"><button class="iconfont icon-dianzan1 {{user.dianzhan?'active':''}}"></button></view>
-  <view bindtap="shouchang" class="foot-btn"><button class="iconfont icon-collection-b {{user.shoucang?'active':''}}"></button></view>
-  <view bindtap="comment" class="foot-btn"><button class="iconfont icon-pingluncomment43"></button></view>
-  <view class="foot-btn"><button open-type="share" class="iconfont icon-fenxiang"></button></view>
 </view>
 
-<template is="login" data="{{showPopup: showPopup, canIUse: canIUse}}"></template>
+<!-- 分割 -->
+<view style="margin-buttom:100rpx;"></view>
+<view class="foot">
+  <view bindtap="dianZhan" class="foot-btn">
+    <button class="foot-icon">
+      <image  src="/images/icon/dianzan{{user.dianzhan?'_':''}}.png"></image>
+      <text>点赞</text>
+    </button>
+  </view>
+  <view bindtap="shouchang" class="foot-btn">
+    <button class="foot-icon">
+      <image src="/images/icon/shoucang{{user.shoucang?'_':''}}.png"></image>
+      <text>收藏</text>
+    </button>
+  </view>
+  <view bindtap="comment" class="foot-btn">
+    <button  class="foot-icon">
+      <image  src="/images/icon/pinglun.png"></image>
+      
+      <text>评论·{{data.comment_cnt}}</text>
+    </button>
+  </view>
+  <view class="foot-btn">
+    <button open-type="share" class="foot-icon">
+      <image  src="/images/icon/fenxiang.png"></image>
+      <text>分享</text>
+    </button>
+  </view>
+</view>

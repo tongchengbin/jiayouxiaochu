@@ -1,14 +1,16 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/my/my",
-    "pages/favorites/favorites",
-    "pages/menuDetail/menuDetail",
-    "pages/catelist/catelist",
+    "pages/index/index",
     "pages/menuList/menuList",
     "pages/search/search",
-    "pages/logs/logs",
     "pages/comment/comment",
+    "pages/menuDetail/menuDetail",
+    "pages/favorites/favorites",
+    "pages/catelist/catelist",
+    "pages/logs/logs",
+    "pages/my/history/history",
+    "pages/my/feedback/feedback",
     "components/tips/tips"
     
   ],

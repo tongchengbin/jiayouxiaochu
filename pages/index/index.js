@@ -4,6 +4,7 @@ const app = getApp()
 import api from '../../utils/request'
 Page({
   data: {
+    moreLoading:false,// 加载更多
     swiperItems: [],
     params:{"page":1},
     listdata:[],
@@ -19,15 +20,15 @@ Page({
     })
   },
   onLoad: function () {
-    console.log("index onload")
     this.getSwiper()
     this.getList()
     
   },
   getList:function(){
-    console.log(this.data)
+    this.setData({"moreLoading":true})
     api.wxRequest('/api/frontend/wx/index/', 'GET', this.data.params).then(res => {
       this.setData({ "listdata": this.data.listdata.concat(res.data.results) })
+      this.setData({ "moreLoading": false })
     })
   },
   loadMore:function(){

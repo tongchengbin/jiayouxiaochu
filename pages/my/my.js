@@ -1,34 +1,35 @@
 import api from '../../utils/request'
 import AUTH from '../../utils/auth'
 import {showTopTip} from '../../utils/util'
+let app=getApp()
 Page({
   data: {
    //判断小程序的API，回调，参数，组件等是否在当前版本可用。
    canIUse: wx.canIUse('button.open-type.getUserInfo'),
    islogin:false,
-   userinfo:{},
+   userInfo:{},
    showPopup:false
   },
    
   onLoad: function(options) {
-    console.log("onload")
    // 查看是否授权
     // 是否进入页面自动登录 
   },
   onShow:function(){
-    let lastPage=wx.getStorageSync('lastPage')
-    console.log("lastpage",lastPage)
     // 获取上一个页面
     AUTH.checkToken().then(isLogin=>{
       if(isLogin){
-        this.setData({islogin: true,userinfo:wx.getStorageSync('userinfo')});
-        if(lastPage){
-          wx.removeStorageSync('lastPage')
-          wx.navigateTo({ url: lastPage})}
+        this.setData({ islogin: true, userInfo:wx.getStorageSync('userinfo')});
         }else{
-          this.setData({"islogin":false})
+        this.setData({ "islogin": false,'userInfo':{'avatar':'/images/icon/b1.png'}})
         }
       })
+  },
+  logout(){
+    wx.removeStorageSync('token')
+    wx.removeStorageSync('openid')
+    wx.removeStorageSync('userinfo')
+    this.setData({ "islogin": false, 'userInfo': { 'avatar': '/images/icon/b1.png' } })
   },
   login(){
     // 手动登录
@@ -72,27 +73,8 @@ Page({
     }
     
   },
-  bindGetUserInfo(e){
-    // 授权回调
-    this.setData({"showPopup":false})
-    if(e.detail.userInfo){
-      // 用户同意授权  直接调用服务器登录
-      AUTH.login(isLogin=>{
-        let autoLogin=wx.getStorageSync('autologin')
-        if(isLogin && autoLogin){
-          // 跳转上一页面
-          let pages=getCurrentPages()
-         // 获取上一个页面
-          let lastPage=pages[pages.length-2]
-          if(lastPage){
-            lastPage.onLoad()
-          }
-          wx.removeStorageSync('auaologin')
-        }
-      })
-    }else{
-      // 用户拒绝授权
-      this.setData({"showPopup":false})
-    }
+  agreeGetUser: function (e) {
+    let self = this;
+    AUTH.checkAgreeGetUser(e, app, self, true);;
   },
  })

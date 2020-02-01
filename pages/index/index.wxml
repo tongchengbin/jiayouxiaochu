@@ -3,14 +3,16 @@
 
 <!-- tips -->
 <tips id='tips'></tips>
+<import src="../../templates/loading.wxml" />
 <!-- tips-->
 <view class="header-search">
-  <navigator url="/pages/menuList/menuList">
+ 
   <view class="inner-search">
-      <icon size="20" class="icon-search" type="search"></icon>
+    <navigator hover-class="nbg" url="/pages/menuList/menuList" style="width:100%;">
+      <icon size="14" class="icon-search" type="search"></icon>
       <text>搜菜谱、食材</text>
+    </navigator>
     </view>
-  </navigator>
   </view>
 <view class="body">
   <!-- 轮播图 -->
@@ -34,19 +36,22 @@
         </swiper>
         <!-- 轮播图结束 -->
     
-<view class="container">
-  <view class="title">— 热门菜谱 —</view>
-  <!-- 主体数据 -->
-  <view class="box">
-    <view class="item" wx:for="{{listdata}}" wx:key="item"  data-mid="{{item.id}}">
-      <navigator url="/pages/menuDetail/menuDetail?mid={{item.id}}">
-      <image src="{{item.display_img}}?x-oss-process=image/resize,m_fill,w_670,h_450/quality,q_50/format,jpg" mode="aspectFill"></image>
-      <view class="item-info"><text>{{item.name}}</text></view>
-      </navigator>
+  <view class="container">
+    <view class="title">— 热门菜谱 —</view>
+    <!-- 主体数据 -->
+    <view class="box">
+      <view class="item" wx:for="{{listdata}}" wx:key="item"  data-mid="{{item.id}}">
+        <navigator hover-class="nbg" url="/pages/menuDetail/menuDetail?mid={{item.id}}">
+          <image src="{{item.display_img}}?x-oss-process=image/resize,m_fill,w_670,h_450/quality,q_50/format,jpg" mode="aspectFill"></image>
+          <view class="item-info"><text>{{item.name}}</text></view>
+        </navigator>
+      </view>
+    </view>
+    <view style='display:{{moreLoading?"block":"none"}}'>
+      <template is="tempLoading" />
     </view>
   </view>
 </view>
- </view>
 
 
 

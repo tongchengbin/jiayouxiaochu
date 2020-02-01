@@ -1,43 +1,50 @@
 /* pages/menuList.wxss */
 
-
+.hbg{
+  background-color:none;
+}
 .header-search{
+  background-color: #fff;
   position: fixed;
-  height: 80rpx;
+  height: 90rpx;
   width: 750rpx;
-  background-color: #F1F0F5;
   top: 0;
 }
 
 .inner-search{
   position: fixed;
-  margin:5px 0;
+  margin-top: 15rpx;
+  margin-bottom: 15rpx;
   padding-left: 50rpx;
   padding-right: 60rpx;
   width: 750rpx;
-  height: 30px;
+  height: 60rpx;
   overflow: hidden;
 }
 .search-input{
-  border-radius: 10rpx;
-  padding-left: 90rpx;
+  font-size: 32rpx;
+  border-radius: 20rpx;
+  padding-left: 100rpx;
   position: absolute;
   left: 50rpx;
   width: 440rpx;
-  height: 30px;
-  background-color:	#FFFFFF;
+  height: 60rpx;
+  color: #9a9a9a;
+  background-color:	rgb(242, 245, 250);
   display: inline-block;
   }
 .search-text{
+  font-weight: 500;
+  color: #9a9a9a;
+  font-size: 30rpx;
   position: absolute;
   left: 580rpx;
   width: 120rpx;
-  height: 30px;
+  height: 60px;
+  line-height: 1;
   display: inline-block;
-  margin-top: 0;
+  margin-top: 16rpx;
   text-align: center;
-  line-height: 30px;
-  color: 	#e64340;
 }
 
 .searchcion {  
@@ -49,8 +56,7 @@
   height: 30px;
   justify-content: center;
   align-items: center;
-}  
-
+} 
 
 .container{
   margin-left: 20rpx;
@@ -94,15 +100,16 @@
 }
 .item .item-info .item-title{
   margin-bottom: 10rpx;
-  font-size: 31rpx;
-  font-weight: bold;  
+  font-size: 30rpx;
+  font-weight: 600;  
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .item .item-info .item-foods{
-  font-size: 25rpx;
+  color: #6e6e6e;
+  font-size: 26rpx;
   margin-bottom: 10rpx;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -111,7 +118,8 @@
 
 .item .item-info .item-rate{
   margin-top: 45rpx;
-  font-size: 25rpx;
+  font-size: 24rpx;
+  color: #707070;
 }
 
 .item-rate .item-dz{
@@ -134,23 +142,26 @@
 }
 
 .history-title{
-  margin: 20rpx 0;
+  margin: 10rpx 0;
+  font-size: 30rpx;
+  color: #7e7e7e;
+
 }
 .key-name{
-  padding: 10rpx;
+  color: #5e5e5e;
+  padding: 5rpx 25rpx;
   margin: 8rpx 12rpx;
-  border-style: solid;
-  border-radius: 15rpx;
-  border-width: 2rpx;
-  border-color: #A8A8A8;
-  
-  font-size: 33rpx;
+  border-radius: 25rpx;
+  background-color: rgb(242, 245, 250);
+  font-size: 28rpx;
   display: inline-block;
   font-family: "微软雅黑";
 }
 
 
 .nodata{
+  text-align: center;
+  widows: 100%;
   margin: auto;
 }
 .nodata image{
@@ -163,5 +174,8 @@
 }
 
 .list-end{
+  text-align: center;
+  font-size: 30rpx;
+  color: #7e7e7e;
   margin-bottom: 30rpx;
 }

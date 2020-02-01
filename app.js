@@ -10,6 +10,9 @@ App({
         this.globalData.navHeight = res.statusBarHeight;
       },
     })
+    // 检测本地token有效性
+    console.log("启用应用")
+    this.checkTokenLife()
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -18,4 +21,24 @@ App({
   globalData: {
     navHeight: 0
   },
+  checkTokenLife(){
+    var token=wx.getStorageSync("token")
+    var userinfo=wx.getStorageSync("userinfo")
+    if(token && userinfo){
+      api.postRequest('/api/frontend/wx/like/',{"token":token}).then(res=>{
+        if(res.data.data==1){
+          console.log("token有效")
+        }else{
+          console.log("token过期")
+          wx.removeStorageSync("token")
+          wx.removeStorageSync("userinfo")
+        }
+        
+      })
+    }else{
+      console.log("无token")
+      wx.removeStorageSync("token")
+      wx.removeStorageSync("userinfo")
+    }
+  }
 })

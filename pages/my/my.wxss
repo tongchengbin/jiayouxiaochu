@@ -1,6 +1,77 @@
 page{
   background-color: #F5F5F5;
 }
+/* 用户信息 */
+
+.userinfo {
+  display: flex;
+  align-items: center;
+  background-color: #118fff;
+  height: 300rpx;
+}
+
+/* 头像 */
+
+.userinfo-avatar {
+  width: 140rpx;
+  height: 140rpx;
+  margin-left: 48rpx;
+  border-radius: 20rpx;
+  background: #f5f7f7;
+}
+
+.userinfo_right {
+  margin-left: 40rpx;
+  color: #fff;
+}
+
+.userinfo_nickname {
+  font-size: 48rpx;
+  font-weight: 600;
+  line-height: 1;
+  display: block;
+  margin-bottom: 20rpx;
+}
+
+/* 用户角色 */
+
+.userinfo_des_box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16rpx;
+}
+
+.userinfo_role {
+  display: block;
+  font-size: 13px;
+  margin-right: 20rpx;
+}
+
+/* 更新信息按钮 */
+
+.btn-update {
+  font-size: 20rpx;
+  color: #fff;
+}
+
+.btn-update>button, .btn-exit {
+  height: 40rpx;
+  padding: 0 16rpx;
+  border: 4rpx solid rgba(255, 255, 255, .2);
+  border-radius: 20rpx;
+  background-color: transparent;
+  box-sizing: border-box;
+  opacity: 0.6;
+  font-size: 10px;
+  color: #fff;
+  line-height: 32rpx;
+}
+
+.btn-update>button::after {
+  border: none;
+}
 /* login */
 .auth-login{
   margin-top: 500rpx;
@@ -20,6 +91,7 @@ page{
    overflow: hidden;
  }
  .userinfo .nickname{
+   margin-bottom: 20rpx;
    color: #fff;
    margin: auto;
    text-align: center;
@@ -62,4 +134,81 @@ page{
   border-radius: 10rpx;
   font-weight: bold;
   background-color:#fff;
+}
+
+.userinfo .login-btn{
+  border: 4rpx solid rgba(255, 255, 255, .2);
+  color: #fff;
+  padding: 10rpx 24rpx;
+  margin-bottom: 20rpx;
+  display: block;
+  background: none;
+}
+button::after {
+  border: none;
+}
+
+
+
+.user-menu{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    background: #fff;
+}
+
+.user-menu .item{
+    float: left;
+    width: 248rpx;
+    height: 187.5rpx;
+    border-right: 3rpx solid rgba(0,0,0,.15);
+    border-bottom: 2rpx solid rgba(0,0,0,.15);
+    text-align: center;
+}
+.user-menu .item image{
+  width: 52rpx;
+  height: 52rpx;
+}
+.user-menu .item .a{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-menu .item.no-border {
+    border-right: 0;
+}
+
+.user-menu .item.item-bottom {
+    border-bottom: none;
+}
+
+.user-menu .icon{
+    margin: 0 auto;
+    display: block;
+    height: 52.803rpx;
+    width: 52.803rpx;
+    margin-bottom: 16rpx;
+}
+
+
+.user-menu .txt{
+  margin-top: 20rpx;
+    display: block;
+    height: 24rpx;
+    width: 100%;
+    font-size: 24rpx;
+    color:#333;
+}
+
+.login-a{
+  font-size: 36rpx;
+  border-radius: 10rpx;
+  width: 450rpx;
+  margin: 200rpx auto;
+  background-color: #ff6161;
+  color: #fff;
 }

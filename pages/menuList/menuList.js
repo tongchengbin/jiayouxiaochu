@@ -14,12 +14,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    count:null,
     listdata:[],
     showHistoryList:false,
     hotKey:[],
     listInfo:{
       maxPage:1,
     },
+    loading:false,
     params: { "page": 1 ,'keyword':null,'food':""},
   },
 
@@ -27,13 +29,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-
-    
-
-
-
-
     let key=options.keyword;
     if(key){
       this.setData({ "params.keyword": key})
@@ -41,8 +36,6 @@ Page({
     }else{
       this.loadSearch()
     }
-    
-    
   },
 
   /**
@@ -94,18 +87,19 @@ Page({
 
   },
   getList: function (type) {
+    this.setData({"loading":true})
     if (type === 'refresh'){
       this.setData({"params.page":1})
     }
     api.wxRequest('/api/frontend/wx/search_menu/', 'GET', this.data.params).then(res => {
       if (type ==='refresh'){
         this.setData({"listInfo.maxPage":res.data.num_pages})
-        this.setData({ "listdata": res.data.results })
+        this.setData({ "listdata": res.data.results,'count':res.data.count })
       }else{
         this.setData({"listInfo.maxPage":res.data.num_pages})
-        this.setData({ "listdata": this.data.listdata.concat(res.data.results) })
+        this.setData({ "listdata": this.data.listdata.concat(res.data.results), 'count': res.data.count })
       }
-      
+      this.setData({ "loading": false })
     })
   },
   loadMore: function () {
@@ -124,21 +118,11 @@ Page({
     let val = e.detail && e.detail.value
     this.setData({"params.keyword":val})
   },
-  startInput(){
-    api.wxRequest('/api/frontend/wx/hot_key/', 'GET', {}).then(res => {
-      this.setData({"hotkey":res.data})
-      this.setData({ "showHistoryList": true })
-    })
-  },
-  outInput(){
-    this.setData({ "showHistoryList": false })
-  },
   insertKey(options){
     let name=options.currentTarget.dataset.name
     this.setData({"params.keyword":name})
-    console.log(this.data)
-    this.outInput()
-    this.getList('refresh') 
+    this.getList('refresh')
+    this.setData({"showHistoryList":false})
   },
   searchSubmit(){
     this.getList('refresh')
@@ -149,5 +133,13 @@ Page({
       this.setData({ "showHistoryList": true })
     })
 
+  },
+  // 输入框聚焦
+  onfocus(e){
+    api.wxRequest('/api/frontend/wx/hot_key/', 'GET', {}).then(res => {
+      this.setData({ "hotkey": res.data })
+      this.setData({ "showHistoryList": true })
+    })
   }
+
 })

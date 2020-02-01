@@ -1,20 +1,83 @@
 <import src="../../templates/login.wxml" />
 <tips id='tips'></tips>
 
-<view class="container">
+<view>
+  <!-- 用户信息 -->
   <view class="userinfo">
     <!-- 头像 -->
-    <view  class="avatar">
-    <image src="{{islogin ? userinfo.avatar:'/images/icon/b2.png'}}"></image></view>
+    <image class="userinfo-avatar" src="{{ userInfo.avatar}}" background-size="cover"></image>
+    <view class='userinfo_right'>
     <!-- 昵称 -->
-    <view wx:if="{{islogin}}" class="nickname">{{userinfo.username}}</view>  
-    <view wx:else class="login-btn"><view class="login-text" bindtap="login">登 录</view></view>  
-  </view>
-  <view class="cards">
-    <view class="card"><button bindtap="myCollect" lang="zh_CN">我的收藏夹</button></view>
-    <view class="card"><button open-type="share" lang="zh_CN" bindgetuserinfo="onGotUserInfo">分享给好友</button></view>
+    <block wx:if="{{islogin}}">
+      <text class="userinfo_nickname">{{userInfo.username}}</text>
+          <view class='userinfo_des_box'>
+          <!-- 角色 -->
+            <text class="userinfo_role" decode="{{true}}">小厨子</text>
+          <!-- 退出登录按钮 -->
+            <view class="btn-exit" catchtap="logout">退出登录</view>
+          </view>
+    </block>
+    <block wx:else>
+      <button class="login-btn userinfo_nickname"  open-type="getUserInfo" bindgetuserinfo="agreeGetUser">登录</button>
+      <view class='userinfo_des_box'>
+        <view class="btn-exit" catchtap="logout">清除缓存</view>
+      </view>
+    </block>
   </view>
 </view>
+<view wx:if="{{islogin}}" class="user-menu">
+    <view class="item">
+      <navigator url="/pages/my/history/history" class="a">
+        <image src="/images/my/history.png"></image>
+        <text class="txt">我的足迹</text>
+      </navigator>
+    </view>
+    <view class="item">
+      <navigator url="/pages/favorites/favorites" class="a">
+        <image src="/images/my/shoucang.png"></image>
+        <text class="txt">我的收藏</text>
+      </navigator>
+    </view>
+    <view class="item no-border">
+      <navigator url="/pages/my/feedback/feedback" class="a">
+        <image src="/images/my/feedback.png"></image>
+        <text class="txt">留言反馈</text>
+      </navigator>
+    </view>
+    <view class="item">
+      <navigator url="/pages/ucenter/collect/collect" class="a">
+        <image src="/images/my/add.png"></image>
+        <text class="txt">新发布</text>
+      </navigator>
+    </view>
+    <view class="item">
+      <navigator url="/pages/ucenter/footprint/footprint" class="a">
+        <image src="/images/my/manager.png"></image>
+        <text class="txt">我的菜谱</text>
+      </navigator>
+    </view>
+    <view class="item no-border">
+      <navigator url="url" class="a">
+        <image src="../../images/my/manager.png"></image>
+        <text class="txt">留言反馈</text>
+      </navigator>
+    </view>
+    
+  </view>
 
 
-<template is="login" data="{{showPopup: showPopup, canIUse: canIUse}}"></template>
+
+
+
+
+
+
+
+
+
+
+
+</view>
+<view wx:if="{{!islogin}}">
+<button class="login-a" open-type="getUserInfo" bindgetuserinfo="agreeGetUser">登录体验更多功能哦！</button>
+</view>
