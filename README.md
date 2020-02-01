@@ -1,11 +1,11 @@
 # 家有小厨  微信小程序
 
-### api 项目地址:
+### api 项目地址(django rest api):
 https://github.com/tongchengbin/Tadmin
 ##### 开放接口:
 https://api.tongchengbin.com 
 
-### 后台管理项目:
+### 后台管理项目(vue3+ vue admin element template):
 ##### https://github.com/tongchengbin/Vadmin
 
 ### 扫码体验
@@ -23,4 +23,10 @@ https://api.tongchengbin.com
 <img src="/docs/images/my_nologin.jpg" width="320px" style="display:inline;">
 <img src="/docs/images/search.jpg" width="320px" style="display:inline;">
 
+### 功能正在开发中......
+
+###
+- [ ] 样式持续优化
+- [ ] 发布菜谱
+- [ ] 我的菜谱管理
 

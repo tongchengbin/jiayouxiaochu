@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="620f490e-791c-43aa-8728-8f19571ce20e" name="Default" comment="update docs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/comment/comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/comment/comment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +72,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580549657423</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="update docs">
+      <created>1580566152633</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1580566152633</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -98,10 +104,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1580548818126" />
-    <state x="406" y="6" key="CommitChangelistDialog2" timestamp="1580564974561">
+    <state x="406" y="6" key="CommitChangelistDialog2" timestamp="1580566387315">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="406" y="6" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580564974561" />
+    <state x="406" y="6" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580566387315" />
     <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1580546477638">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -114,9 +120,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="270" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1580548940990" />
-    <state x="361" y="134" key="Vcs.Push.Dialog.v2" timestamp="1580549659062">
+    <state x="361" y="134" key="Vcs.Push.Dialog.v2" timestamp="1580566154350">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="134" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580549659062" />
+    <state x="361" y="134" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580566154350" />
   </component>
 </project>
