@@ -20,7 +20,7 @@ https://api.tongchengbin.com
 <img src="/docs/images/5.jpg" width="320px" style="display:inline;">
 <img src="/docs/images/login_dialog.jpg" width="320px" style="display:inline;">
 <img src="/docs/images/menulist.jpg" width="320px" style="display:inline;">
-<img src="/docs/images/my" width="320px" style="display:inline;">
+<img src="/docs/images/my.jpg" width="320px" style="display:inline;">
 <img src="/docs/images/search.jpg" width="320px" style="display:inline;">
 
 ### 功能正在开发中......
