@@ -45,13 +45,13 @@
       </navigator>
     </view>
     <view class="item">
-      <navigator url="/pages/ucenter/collect/collect" class="a">
+      <navigator url="/pages/my/addMenu/addMenu" class="a">
         <image src="/images/my/add.png"></image>
         <text class="txt">新发布</text>
       </navigator>
     </view>
     <view class="item">
-      <navigator url="/pages/ucenter/footprint/footprint" class="a">
+      <navigator url="/pages/my/myMenu/myMenu" class="a">
         <image src="/images/my/manager.png"></image>
         <text class="txt">我的菜谱</text>
       </navigator>

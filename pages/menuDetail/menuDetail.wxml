@@ -30,12 +30,28 @@
   <view class="divLine"></view>
   <view  class="food clearfix">
     <view class="title">用料</view>
-    <view class="food-item" wx:for="{{data.foodlist}}" wx:key="item">
+    <view class="food-item" wx:for="{{data.food_list}}" wx:key="item">
       <view class="food-info">
         <text class="left">{{item.name}}</text>
         <text class="right">{{item.unit}}</text>
       </view>
     </view>
+    <block wx:if="{{hidden_food_list.length>0 }}">
+    <view wx:if="{{show_hidden_food_list}}" class="food-item" wx:for="{{hidden_food_list}}" wx:key="item">
+      <view class="food-info">
+        <text class="left">{{item.name}}</text>
+        <text class="right">{{item.unit}}</text>
+      </view>
+    </view>
+    <block wx:if="{{show_hidden_food_list}}">
+     <view bindtap="showHiddenFood" class="show-all">收起<icon class="iconfont icon-arrow-up"></icon></view>
+    </block>
+    <block wx:else>
+     <view bindtap="showHiddenFood" class="show-all">显示全部<icon class="iconfont icon-arrow-down"></icon></view>
+      
+    </block>
+    
+    </block>
   </view>
   <view class="divLine"></view>
   <view  class="steps">
@@ -46,16 +62,13 @@
     </view>
   </view>
   <!-- 评论列表 -->
-  <view style="display:{{showComment}}" class="comment-container">
+  <view wx:if="{{data.comment_cnt>0}}" class="comment-container">
     <!-- 小标题 -->
     <view class="subTitle" id="relatedTitle">
-      <view>评论交流</view>
-      <view class="comment-num">{{data.comment_cnt}}</view>
+      评论交流
     </view>
-    <view class="subTitle_line subTitle_line_comment"></view>
-
     <!-- 列表 -->
-    <block wx:key="id" wx:for="{{comment.dataList}}" wx:for-index="index">
+    <block wx:key="id" wx:for="{{data.comments}}" wx:for-index="index">
       <view class="comment">
         <view>
             <view class="avatar"><image src="{{item.avatar}}"></image></view>
@@ -66,10 +79,9 @@
           <view class="comment-but">
             <view class="add-time">{{item.add_time}}</view>
             <view class="item-a">
-              <button class="comment-like" catchtap="commentLike" data-id="{{item.id}}" data-index="{{index}}">
-                <image  src="/images/icon/dianzan{{item.is_like?'_':''}}.png"></image>
-                <text wx:if="{{item.like>0}}">{{item.like}}</text>
-              </button>
+              <text class="like-cnt" wx:if="{{item.like>0}}">{{item.like}}</text>
+              <text catchtap="commentLike" data-id="{{item.id}}" data-index="{{index}}" class="iconfont {{item.is_like?'icon-dianzan3':'icon-dianzan2'}}">
+              </text>
             </view>  
           </view>
           <view class="comment-chil">
@@ -97,12 +109,9 @@
 
       </view>
     </block>
-    <view style='display:{{isLoading?"block":"none"}}'>
-        <template is="tempLoading" />
-      </view>
-      <view wx:if="{{commentCount>10}}">
-        <view bindtap="comment" class="all-comment">- 查看全部{{commentCount}}评论 -</view>
-      </view>
+    <view wx:if="{{commentCount>5}}">
+      <view bindtap="showComment" class="all-comment">- 查看全部{{commentCount}}评论 -</view>
+    </view>
   </view>
 <!-- 评论层结束 -->
 </view>
@@ -112,27 +121,27 @@
 <view class="foot">
   <view bindtap="dianZhan" class="foot-btn">
     <button class="foot-icon">
-      <image  src="/images/icon/dianzan{{user.dianzhan?'_':''}}.png"></image>
-      <text>点赞</text>
+
+      <text class="iconfont {{user.dianzhan?'icon-aixin1':'icon-aixin'}}"></text>
+      <text class="foot-desc">点赞</text>
     </button>
   </view>
   <view bindtap="shouchang" class="foot-btn">
     <button class="foot-icon">
-      <image src="/images/icon/shoucang{{user.shoucang?'_':''}}.png"></image>
-      <text>收藏</text>
+      <text class="iconfont {{user.shoucang?'icon-shoucang1':'icon-shoucang'}}"></text>
+      <text class="foot-desc">收藏</text>
     </button>
   </view>
-  <view bindtap="comment" class="foot-btn">
+  <view bindtap="showComment" class="foot-btn">
     <button  class="foot-icon">
-      <image  src="/images/icon/pinglun.png"></image>
-      
-      <text>评论·{{data.comment_cnt}}</text>
+      <text class="iconfont icon-pinglun"></text>
+      <text class="foot-desc">评论·{{data.comment_cnt}}</text>
     </button>
   </view>
   <view class="foot-btn">
     <button open-type="share" class="foot-icon">
-      <image  src="/images/icon/fenxiang.png"></image>
-      <text>分享</text>
+      <text class="iconfont icon-fenxiang1"></text>
+      <text class="foot-desc">分享</text>
     </button>
   </view>
 </view>

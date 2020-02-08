@@ -1,17 +1,17 @@
 /* components/tips/tips.wxss */
 
-.Info{
-  background-color: #2d8cf0;
+.primary{
+  background-color: #1989fa;
   }
-.Success {
-  background-color: #19be6b;
+.success {
+  background-color: #07c160;
 }
 
-.Warning{
-  background-color: #ff9900;
+.warning{
+  background-color: #ff976a;
 }
-.Error{
-  background-color: #ed3f14;
+.danger{
+  background-color: #ee0a24;
 }
 .toptips {
   position: fixed;

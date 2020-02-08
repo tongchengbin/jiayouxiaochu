@@ -3,7 +3,7 @@
   <block wx:if="{{!userInfo.isLogin}}">
 
     <view class="login-inner">
-      <image class="avatar" src="../../images/icon/b1.png"></image>
+      <image class="avatar" src="/images/icon/b1.png"></image>
       <view class="username">
         <text>立即登录，体验更多功能</text>
       </view>

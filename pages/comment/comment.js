@@ -9,20 +9,19 @@ Page({
    */
   data: {
     "cnt":0,// 总评论数
+    "showInput":false,
+    "isLoginPopup":false,
+    "page":1,
+    "comments": [],
     "comment":{
       "id":null,
       "content":""
     },
-    "moreLoading":false,
-    // 当前评论item的路径
     "currentPath":null,
     // 当前评论的item
     "currentItem":null,
     "content":"",
     "showKeyboard":false,// 是否定位到输入框
-    "currentPage":1,
-    "more":true,
-    "comList":[],
     "placeholder":"请留下您的评论"
 
   },
@@ -35,9 +34,8 @@ Page({
     if(id==undefined){
       id=10
     }
-    this.setData({ "comment.id": id})
+    this.setData({ "id": id})
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -87,38 +85,73 @@ Page({
   onShareAppMessage: function () {
 
   },
+  agreeGetUser: function (e) {
+    let self = this;
+    AUTH.checkAgreeGetUser(e, app, self, true);;
+
+  },
+  closeLoginPopup() {
+    this.setData({ isLoginPopup: false });
+  },
+  // 上面是授权
   comtentInput:function(e){
     this.setData({"comment.content": e.detail.value});
   },
-  getComment:function(isMore){
-    this.setData({ "moreLoading": true })
-    api.getRequest('/api/frontend/wx/comment/',{"id":this.data.comment.id,"page":this.data.currentPage}).then(res=>{
-      if(isMore){
-        this.setData({ "comList": this.data.comList.concat(res.data.data.results), "cnt": res.data.data.count})
+  getComment: function () {
+    this.setData({"loading":true})
+    api.getRequest('/api/frontend/wx/comment/', { "id": this.data.id,"page":this.data.page }).then(res => {
+      this.setData({ "loading": false })
+      if(this.data.page==1){
+        // 首次加载
+        
+        this.setData({
+          "comments": res.data.data.results,
+          "cnt": res.data['data']['count']
+        })
       }else{
-        this.setData({ "comList": res.data.data.results, "cnt": res.data.data.count})
+        var comments = this.data.comments.concat(res.data.data.results)
+        this.setData({
+          "comments": comments,
+          "cnt": res.data['data']['count']
+        })
       }
-      this.setData({ "moreLoading": false })
-      if(res.data.data.next){
-        this.setData({"more":true})
-      }else{
-        this.setData({"more":false})
-      }
-
     })
-
   },
-  onReachBottom() {
+  loadMore() {
     // 加载更多
-    if(this.data.more){
-      this.setData({"currentPage":this.data.currentPage+1})
-      this.getComment(true)
-    }else{
-      wx.showToast({
-        title: '到底了',
-        icon:"none"
-      })
+    if(this.data.loading){
+      return
     }
+    if(this.data.comments.length<this.data.cnt){
+      this.setData({"page":this.data.page+1})
+      this.getComment()
+    }else{
+      console.log("到底了")
+    }
+  },
+  // 显示输入框
+  showInput:function(e){
+    // 个人号无法审核评论功能
+    wx.showModal({
+      title: 'APP',
+      content: 'APP正在加班开发中.....',
+    })
+    return
+    AUTH.checkToken(self).then(isLogin => {
+      if (isLogin) {
+        this.setData({ "showInput": true })
+      } else {
+        this.setData({ "isLoginPopup": true })
+      }
+    })
+  },
+  // 隐藏评论输入
+  hiddenComment() {
+    this.setData({ "showDialogComment": false })
+  },
+  // 评论值监听
+  changeInputComment: function (e) {
+    this.setData({ "content": e.detail.value })
   },
   // 点击评论
   inReply(e){
@@ -153,44 +186,39 @@ Page({
   },
   // 评论点赞
   commentLike(e) {
-    console.log(e)
     var self = this;
     AUTH.checkToken(self).then(isLogin => {
-      if (!isLogin) { this.setData({ "isLoginPopup": true }); return }
+      if (isLogin){
+        var index = e.currentTarget.dataset.index;
+        var cIndex = e.currentTarget.dataset.cindex
+        console.log(index,cIndex)
+        let item;
+        // 记录下item 的路径
+        let path = ""
+        if (cIndex == undefined) {
+          path = `comments[${index}]`
+          item = this.data.comments[index]
+        } else {
+          path = `comments[${index}].chils[${cIndex}]`
+          item = this.data.comments[index].chils[cIndex]
+        }
+        var data = {
+          "isLike": !item.is_like,
+          "commentId": item.id
+        }
+        api.postRequest("/api/frontend/wx/comment_like/", data).then(res => {
+          item.is_like = !item.is_like
+          item.like = item.is_like ? item.like + 1 : item.like - 1
+          var obj = {}
+          obj[path] = item
+          this.setData(obj)
+          // this.setData({"comment.dataList[0]":item})
+        })
+      }else{
+        this.setData({ "isLoginPopup": true })
+        return;
+      }
     })
-    var index = e.currentTarget.dataset.index;
-    var cIndex = e.currentTarget.dataset.cindex
-    let item;
-    // 记录下item 的路径
-    let path = ""
-    if (cIndex == undefined) {
-      path = `comList[${index}]`
-      item = this.data.comList[index]
-    } else {
-      path = `comList[${index}].chils[${cIndex}]`
-      item = this.data.comList[index].chils[cIndex]
-    }
-    var data = {
-      "isLike": !item.is_like,
-      "commentId": item.id
-    }
-    api.postRequest("/api/frontend/wx/comment_like/", data).then(res => {
-      item.is_like = !item.is_like
-      item.like = item.is_like ? item.like + 1 : item.like - 1
-      console.log(path, item)
-      console.log(path)
-      var obj = {}
-      obj[path] = item
-      this.setData(obj)
-      // this.setData({"comment.dataList[0]":item})
-    })
-
-  },
-  // 评论输入值监听
-  commentValue(e){
-    console.log(e)
-    var content=e.detail.value
-    this.setData({"content":content})
   },
   // 提交评论
   submitComment(){
@@ -202,18 +230,13 @@ Page({
     let item = this.data.currentItem;
     var content=this.data.content;
     var reply=item?item.id:null
-    api.postRequest('/api/frontend/wx/comment/', { "content": content, "reply": reply, "id": this.data.comment.id}).then(res=>{
+    api.postRequest('/api/frontend/wx/comment/', { "content": content, "reply": reply, "id": this.data.id}).then(res=>{
       if(res.data.status==0){
-        wx.showToast({
-          title: '提交成功'
-        })
+        this.setData({"content":""})
+        wx.showToast({title: '提交成功'})
       }else{
-        wx.showToast({
-          title: res.data.msg,
-          icon:'none'
-        })
-      }
-      
+        wx.showToast({ title: res.data.msg,icon:'none'})
+      } 
     })
 
   }

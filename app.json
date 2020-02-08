@@ -1,18 +1,25 @@
 {
   "pages": [
-    "pages/my/my",
     "pages/index/index",
+    "pages/menuDetail/menuDetail",
+   
+    "pages/comment/comment",
+    
+    "pages/my/center/center",
+    "pages/my/my",
+    "pages/my/addMenu/addMenu",
+    "pages/my/myMenu/myMenu",
+    
     "pages/menuList/menuList",
     "pages/search/search",
-    "pages/comment/comment",
-    "pages/menuDetail/menuDetail",
+    
+    
     "pages/favorites/favorites",
     "pages/catelist/catelist",
     "pages/logs/logs",
     "pages/my/history/history",
     "pages/my/feedback/feedback",
     "components/tips/tips"
-    
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -40,7 +47,7 @@
         "text": "分类"
       },
       {
-        "pagePath": "pages/my/my",
+        "pagePath": "pages/my/center/center",
         "iconPath": "images/nav/my-off.png",
         "selectedIconPath": "images/nav/my-on.png",
         "text": "我的"

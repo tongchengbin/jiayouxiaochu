@@ -17,16 +17,16 @@ https://api.tongchengbin.com
 <img src="/docs/images/comment.jpg" width="320px" style="display:inline;">
 <img src="/docs/images/feedback.jpg" width="320px" style="display:inline;">
 <img src="/docs/images/cate.jpg" width="320px" style="display:inline;">
+<img src="/docs/images/5.jpg" width="320px" style="display:inline;">
 <img src="/docs/images/login_dialog.jpg" width="320px" style="display:inline;">
 <img src="/docs/images/menulist.jpg" width="320px" style="display:inline;">
-<img src="/docs/images/my_login.jpg" width="320px" style="display:inline;">
-<img src="/docs/images/my_nologin.jpg" width="320px" style="display:inline;">
+<img src="/docs/images/my" width="320px" style="display:inline;">
 <img src="/docs/images/search.jpg" width="320px" style="display:inline;">
 
 ### 功能正在开发中......
 
 ###
-- [ ] 样式持续优化
-- [ ] 发布菜谱
-- [ ] 我的菜谱管理
+- [ - ] 样式持续优化
+- [ √ ] 发布菜谱(个人小程序不支持发布功能 页面'/pages/my/addMenu')
+- [ √ ] 我的菜谱管理
 

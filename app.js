@@ -25,7 +25,7 @@ App({
     var token=wx.getStorageSync("token")
     var userinfo=wx.getStorageSync("userinfo")
     if(token && userinfo){
-      api.postRequest('/api/frontend/wx/like/',{"token":token}).then(res=>{
+      api.postRequest('/api/frontend/wx/life/',{"token":token}).then(res=>{
         if(res.data.data==1){
           console.log("token有效")
         }else{

@@ -77,7 +77,10 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if(this.data.listdata.length<this.data.count){
+      this.setData({"params.page":this.data.params.page+1})
+      this.getList()
+    }
   },
 
   /**
@@ -86,31 +89,25 @@ Page({
   onShareAppMessage: function () {
 
   },
-  getList: function (type) {
+  getList: function () {
     this.setData({"loading":true})
-    if (type === 'refresh'){
-      this.setData({"params.page":1})
-    }
     api.wxRequest('/api/frontend/wx/search_menu/', 'GET', this.data.params).then(res => {
-      if (type ==='refresh'){
-        this.setData({"listInfo.maxPage":res.data.num_pages})
-        this.setData({ "listdata": res.data.results,'count':res.data.count })
-      }else{
-        this.setData({"listInfo.maxPage":res.data.num_pages})
-        this.setData({ "listdata": this.data.listdata.concat(res.data.results), 'count': res.data.count })
-      }
       this.setData({ "loading": false })
+      if (this.data.params.page ===1){
+        this.setData({ "listdata": res.data.data.results,'count':res.data.data.count })
+      }else{
+        this.setData({ "listdata": this.data.listdata.concat(res.data.data.results), 'count': res.data.data.count })
+      }
     })
   },
-  loadMore: function () {
-    if(this.data.params.page>=this.data.listInfo.maxPage){
-      return 
-    }
-    this.setData({ "params.page": this.data.params.page + 1 })
-    this.getList()
-  },
+
   onReachBottom() {
-    this.loadMore()
+    console.log("onReachBottom", this.data.listdata.length, this.data.count)
+    if (this.data.listdata.length < this.data.count) {
+      this.setData({ "params.page": this.data.params.page + 1 })
+      this.getList()
+    }
+    
   },
   updateValue(e) {
     let name = e.currentTarget.dataset.name;
@@ -120,19 +117,17 @@ Page({
   },
   insertKey(options){
     let name=options.currentTarget.dataset.name
-    this.setData({"params.keyword":name})
-    this.getList('refresh')
-    this.setData({"showHistoryList":false})
+    this.setData({ "params.keyword": name, "params.page": 1, "showHistoryList": false})
+    this.getList()
   },
   searchSubmit(){
-    this.getList('refresh')
+    this.setData({ "params.page": 1,"showHistoryList":false})
+    this.getList()
   },
   loadSearch(){
     api.wxRequest('/api/frontend/wx/hot_key/', 'GET', {}).then(res => {
-      this.setData({"hotkey":res.data})
-      this.setData({ "showHistoryList": true })
+      this.setData({ "hotkey": res.data, "showHistoryList": true})
     })
-
   },
   // 输入框聚焦
   onfocus(e){

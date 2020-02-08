@@ -58,15 +58,20 @@ function getRequest(url, data) {
       data: data,
       header
     }).then(res=>{
-      if(res.data.status==4003 || res.data.status==403 ){
+      console.log("get req",res)
+      if(res.data.status==0){
+        return resolve(res)
+      }else if(res.data.status==401 ){
+        console.log("权限验证失败   去登录")
         wx.showToast({title: '认证过期',mask:true,icon:"none"})
         wx.removeStorageSync('token')
         wx.removeStorageSync('openid')
         wx.removeStorageSync('userinfo')
-        wx.switchTab({url: '/pages/my/my'})
+        wx.switchTab({url: '/pages/my/center/center'})
         resolve(res)
+      }else{
+        reject(res)
       }
-      return resolve(res)
     })
 
 
@@ -98,7 +103,7 @@ function postRequest(url, data) {
       showTopTip("网络异常,请稍后再试!",'Error')
     }
     console.log(res.data.status,"status")
-    if(res.data.status==4003 || res.data.status==403){
+    if(res.data.status==401){
       showTopTip("认证过期","Error")
       wx.removeStorageSync('token')
       wx.removeStorageSync('openid')
@@ -135,7 +140,7 @@ function wxRequest(url, method,data) {
     data: data,
     header
   }).then(res=>{
-    if(res.data.status==4003){
+    if(res.data.status==401){
       wx.setStorageSync('userinfo',{})
       console.log("token过期")
       wx.navigateTo({url: '/pages/my/my'})
