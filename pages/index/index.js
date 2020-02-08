@@ -43,7 +43,7 @@ Page({
   
   },
   toDetail(e){
-    let id = e.currentTarget.dataset['id'];
+    let mid = e.currentTarget.dataset['mid'];
   },
   getSwiper(){
     api.wxRequest('/api/frontend/wx/swiper/', 'GET', {}).then(res => {

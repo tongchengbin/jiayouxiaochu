@@ -4,37 +4,6 @@
     <list default="true" id="620f490e-791c-43aa-8728-8f19571ce20e" name="Default" comment="update docs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/app.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/tips/tips.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/tips/tips.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/tips/tips.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/components/tips/tips.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/images/comment.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/images/comment.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/images/detail.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/images/detail.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/images/index.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/images/index.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/images/my_login.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/images/my_nologin.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/regenerator-runtime/runtime.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/catelist/catelist.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/catelist/catelist.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/comment/comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/comment/comment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/comment/comment.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/comment/comment.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/comment/comment.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/comment/comment.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/menuDetail/menuDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/menuDetail/menuDetail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/menuDetail/menuDetail.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/menuDetail/menuDetail.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/menuDetail/menuDetail.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/menuDetail/menuDetail.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/menuList/menuList.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/menuList/menuList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/menuList/menuList.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/menuList/menuList.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/menuList/menuList.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/menuList/menuList.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/feedback/feedback.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/feedback/feedback.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/history/history.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/history/history.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/my.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/my.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/request.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +25,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/docs/images" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="settings.editor.selected.configurable" value="http.proxy" />
   </component>
@@ -81,8 +50,6 @@
       <workItem from="1580546181358" duration="305000" />
       <workItem from="1580546841061" duration="4728000" />
       <workItem from="1580564767961" duration="218000" />
-      <workItem from="1580977188055" duration="28000" />
-      <workItem from="1581136673648" duration="142000" />
     </task>
     <task id="LOCAL-00001" summary="重构多个页面样式">
       <created>1580546929914</created>
@@ -112,14 +79,7 @@
       <option name="project" value="LOCAL" />
       <updated>1580566152633</updated>
     </task>
-    <task id="LOCAL-00005" summary="update docs">
-      <created>1580566539333</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1580566539333</updated>
-    </task>
-    <option name="localTasksCounter" value="6" />
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,14 +104,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1580548818126" />
-    <state x="406" y="6" key="CommitChangelistDialog2" timestamp="1580566538106">
+    <state x="406" y="6" key="CommitChangelistDialog2" timestamp="1580566387315">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="406" y="6" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580566538106" />
-    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1580977204385">
+    <state x="406" y="6" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580566387315" />
+    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1580546477638">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1580977204385" />
+    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1580546477638" />
     <state x="589" y="326" width="382" height="172" key="Github.CreateGistDialog" timestamp="1580546260053">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -160,9 +120,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="270" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1580548940990" />
-    <state x="361" y="134" key="Vcs.Push.Dialog.v2" timestamp="1580566540803">
+    <state x="361" y="134" key="Vcs.Push.Dialog.v2" timestamp="1580566154350">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="134" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580566540803" />
+    <state x="361" y="134" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580566154350" />
   </component>
 </project>

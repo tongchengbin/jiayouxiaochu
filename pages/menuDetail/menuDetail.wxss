@@ -20,12 +20,6 @@
   width: 100%;
 }
 
-.title{
-  font-size: 32rpx;
-  line-height: 1;
-  font-weight: 700;
-  color: #333;
-}
 swiper,swiper-item{
   max-height: 450rpx!important;
   height:100vh!important;
@@ -45,7 +39,6 @@ swiper,swiper-item{
   height: 100%;
 }
 .name{
-  font-size: 36rpx;
   align-items: center;
   margin:auto;
   color: #333;
@@ -66,7 +59,7 @@ swiper,swiper-item{
   padding: 20rpx 0;
 }
 .food-item{
-  margin:20rpx 40rpx;
+  margin:20rpx 10rpx;
 }
 
 .food .title{
@@ -126,35 +119,16 @@ swiper,swiper-item{
 
 .foot{
   position: fixed;
-  display: flex;
   bottom: 0;
-  width: 100%;
+  left: 0;
+  right: 0;
   height: 90rpx;
   background-color: #FFF;
   border-top-color: #DDDDDD;
   border-top-width: 2rpx;
   border-top-style: solid;
 }
-.foot .foot-btn{
-  -webkit-box-flex: 1;
-  flex: 1;
-  height: 100rpx;
-  display: inline-block;
-  text-align: center;
-  color: #fff;
-}
-.foot .iconfont{
-  margin: 6rpx;
-  display: block;
-  line-height: 1;
-  font-size: 40rpx;
-}
-.foot .foot-desc{
-  display: block;
-  margin-top: 8rpx;
-  line-height: 1;
-  font-size: 26rpx;
-}
+
 .foot-btn button{
   line-height: 70rpx;
   padding: 5rpx 0;
@@ -165,7 +139,13 @@ swiper,swiper-item{
   border: none;
   background-color: none;
 }
-
+.foot .foot-btn{
+  width: 25%;
+  height: 100rpx;
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+}
 .foot-btn text{
   color: #707070;
   font-size: 50rpx;
@@ -189,9 +169,6 @@ button::after{
   border: none;
   overflow: hidden;
 }
-.foot .icon-aixin1,.foot .icon-shoucang1{
-  color: #e64340;
-}
 .foot-icon image{
   height: 32rpx;
   width: 32rpx;
@@ -200,26 +177,43 @@ button::after{
   margin: 10rpx auto;
   display: block
 }
+.foot-icon text{
+  margin-top: 5rpx;
+  display: block;
+  font-size: 30rpx;
+  line-height: 1;
+
+}
 /* 猜你喜欢、评论标题下的横线 */
 .subTitle {
-  font-size: 32rpx;
-  line-height: 1;
-  font-weight: 700;
-  color: #333;
-
   margin: 40rpx 0 20rpx;
+  font-size: 30rpx;
+  line-height: 1.4;
+  font-weight: 500;
+  color: #4c4c4c;
   position: relative;
   display: flex;
   justify-content: space-between;
 }
-.subTitle::after{
-     content: '';
-     position: absolute;
-     left: 8rpx;
-     top: 48rpx;
-     width: 36px;
-     height:6rpx;
-     background-color: #e64340;
+
+.subTitle_line {
+  width: 100%;
+  height: 1rpx;
+  background-color: #eee;
+  margin-bottom: 32rpx;
+  position: relative;
+  overflow: visible;
+}
+
+.subTitle_line::before {
+  content: "";
+  display: block;
+  width: 54rpx;
+  height: 4rpx;
+  background: #959595;
+  position: absolute;
+  left: 0;
+  top: -2rpx;
 }
 
 .subTitle_line_comment {
@@ -240,6 +234,12 @@ button::after{
   color: #333;
   font-weight: 500;
   margin-bottom: 10rpx;
+  /* 边框 */
+  border-bottom-color: #E0E3DA;
+  border-bottom-width: 2rpx;
+  border-bottom-style: solid;
+  padding-bottom: 20rpx;
+
 }
 .comment .avatar{
   margin-top: 20rpx;
@@ -258,9 +258,6 @@ button::after{
   margin-left: 20rpx;
 }
 .comment .comment-right  .comment-nickname{
-  font-size: 30rpx;
-  color: #666;
-  font-weight: 600;
   margin: 10rpx 0;
 }
 .comment .comment-right .comment-time{
@@ -269,21 +266,19 @@ button::after{
   color: #444;
 }
 .comment .comment-content{
-  margin: 10rpx 0;
   color: #333;
-  font-size: 26rpx;
-  line-height: 1;
+  font-size: 28rpx;
+  line-height: 1.7;
 }
 .comment-but{
-  margin: 10rpx 0;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 .comment-but .comment-like{
-  
-  margin-left: 6rpx;
+  margin-top: 8rpx;
+  margin-bottom: 18rpx;
   background: none;
   border: none;
   padding: 0; 
@@ -304,8 +299,8 @@ button::after{
   font-size: 28rpx;
 }
 .comment .add-time{
-  font-size: 24rpx;
-  color: #999;
+  font-size: 28rpx;
+  color: #333;
 }
 
 .chil-avatar{
@@ -327,8 +322,6 @@ button::after{
   padding-top: 20rpx;
 }
 .comment-username{
-  margin-bottom: 10rpx;
-  line-height: 1.6;
   font-weight: 600rpx;
   color: #1a1a1a;
 }
@@ -341,26 +334,4 @@ button::after{
   font-size: 28rpx;
   font-weight: 600;
 
-}
-
-.comment .item-a{
-  display: flex;
-  justify-content: center;
-  align-items: center
-}
-.comment .like-cnt{
-  font-size: 26rpx;
-  color: #555;
-}
-.comment .item-a .icon-dianzan3{
-  color: #e64340
-}
-.show-all{
-  font-size: 30rpx;
-  text-align: center;
-  margin: auto;
-}
-.show-all icon{
-  margin-left: 8rpx;
-  font-size: 40rpx;
 }

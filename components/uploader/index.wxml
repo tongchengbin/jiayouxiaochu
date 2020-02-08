@@ -1,0 +1,64 @@
+
+<view class="van-uploader">
+  <view class="van-uploader__wrapper">
+    <!-- 预览样式 -->
+    <!-- 多图 -->
+    <block wx:if="{{mult && fileList.length>0}}">
+      <view  wx:for="{{ fileList  }}" wx:key="index" class="van-uploader__preview">
+        <image
+        mode="{{ imageFit }}"
+        src="{{ item.url }}"
+        alt="{{ item.name || ('图片' + index) }}"
+        class="van-uploader__preview-image"
+        style="width:{{previewSizeW}};height:{{previewSizeH}};"
+        data-url="item.url{{ossStyle}}"
+        bind:tap="doPreviewImage"
+      />
+      <van-icon
+        wx:if="{{ deletable }}"
+        name="clear"
+        class="van-uploader__preview-delete"
+        data-index="{{ index }}"
+        bind:tap="deleteItem"
+      />
+    </view>
+    </block>
+    <block wx:if="{{src}}">
+      <view  class="van-uploader__preview">
+      <image
+        mode="{{ imageFit }}"
+        src="{{ src }}"
+        alt="{{ '图片' }}"
+        class="van-uploader__preview-image"
+        style="width:{{previewSizeW}};height:{{previewSizeH}};"
+        data-url="item.url{{ossStyle}}"
+        bind:tap="doPreviewImage"
+      />
+      <van-icon
+        wx:if="{{ deletable }}"
+        name="clear"
+        class="van-uploader__preview-delete"
+        data-index="{{ index }}"
+        bind:tap="deleteItem"
+      />
+    </view>
+    </block>
+    <!-- 上传样式 -->
+    <block wx:if="{{ isInCount }}">
+      <view class="van-uploader__slot" bind:tap="startUpload">
+        <slot />
+      </view>
+
+      <!-- 默认上传样式 -->
+      <view
+        wx:if="{{(fileList.length<maxCount && mult) || !src}}"
+        class="van-uploader__upload"
+        style="width:{{previewSizeW}}; height:{{previewSizeH}};"
+        bind:tap="startUpload"
+      >
+        <van-icon name="plus" class="van-uploader__upload-icon" />
+        <text wx:if="{{ uploadText }}" class="van-uploader__upload-text">{{ uploadText }}</text>
+      </view>
+    </block>
+  </view>
+</view>

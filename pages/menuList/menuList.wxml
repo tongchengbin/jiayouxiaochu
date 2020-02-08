@@ -11,17 +11,17 @@
       <input class="search-input" 
       onfocus="onfocus"
       bindinput="updateValue" 
-      bindconfirm="searchSubmit" value="{{params.keyword}}"  placeholder="搜菜谱" placeholder-class="placeholder-center" confirm-type="search"></input>
-      <view bindtap="searchSubmit" class="search-text">搜索</view>
+      bindconfirm="getList" value="{{params.keyword}}"  placeholder="搜菜谱" placeholder-class="placeholder-center" confirm-type="search"></input>
+      <view class="search-text"><navigator hover-class="hbg" url="/pages/menuList/menuList?keyword={{params.keyword}}">搜索</navigator></view>
     </view>
   </view>
 <view class="container">
   <!-- 主体数据 -->
   <view class="box">
-    <view class="item" wx:for="{{listdata}}" wx:key="item"  data-id="{{item.id}}">
-      <navigator url="/pages/menuDetail/menuDetail?id={{item.id}}">
+    <view class="item" wx:for="{{listdata}}" wx:key="item"  data-mid="{{item.id}}">
+      <navigator url="/pages/menuDetail/menuDetail?mid={{item.id}}">
       <view class="item-img">
-        <image wx:if="{{item.display_img}}" src="{{item.display_img}}?x-oss-process=image/resize,m_fill,w_560,h_340/quality,q_50/format,jpg" mode="scaleToFill"></image>
+        <image src="{{item.display_img}}?x-oss-process=image/resize,m_fill,w_560,h_340/quality,q_50/format,jpg" mode="scaleToFill"></image>
       </view>
       <view class="item-info">
         <view class="item-title">{{item.name}}</view>
@@ -38,11 +38,13 @@
       <template is="tempLoading" />
     </view>
   </view>
-  <view class="feed"  wx:if="{{ listdata.length==count && listdata.length>0 }}">— 家有小厨 —</view>
+  <view  wx:if="{{ listdata.length==count && listdata.length>0 }}" class="list-end">— 家有小厨 —</view>
   <view class="nodata" wx:if="{{count==0}}">
     <image src="/images/icon/nodata.png"></image>
   </view>
 </view>
+
+
   <view class="search-list" hidden="{{!showHistoryList}}">
     <view hover-class="hbg" class="history-title">热门搜索</view>
     <view>
